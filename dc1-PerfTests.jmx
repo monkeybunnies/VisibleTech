@@ -1,0 +1,2724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.5" jmeter="2.10 r1533061">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="dc1-PerfTests" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="dc1-F5" enabled="true">
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">15</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">3</stringProp>
+        <longProp name="ThreadGroup.start_time">1389824797000</longProp>
+        <longProp name="ThreadGroup.end_time">1389824797000</longProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <stringProp name="ThreadGroup.duration">300</stringProp>
+        <stringProp name="ThreadGroup.delay">3</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="UserCounter" enabled="true">
+          <stringProp name="CounterConfig.start">1</stringProp>
+          <stringProp name="CounterConfig.end"></stringProp>
+          <stringProp name="CounterConfig.incr">1</stringProp>
+          <stringProp name="CounterConfig.name">userCounter</stringProp>
+          <stringProp name="CounterConfig.format"></stringProp>
+          <boolProp name="CounterConfig.per_user">false</boolProp>
+        </CounterConfig>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="TestParams" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="searchURL" elementType="Argument">
+              <stringProp name="Argument.name">searchURL</stringProp>
+              <stringProp name="Argument.value">http://dc1-inside-searchdatageo.prod.viq:8080/searchservice/SearchService</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="tierAStartDate" elementType="Argument">
+              <stringProp name="Argument.name">tierAStartDate</stringProp>
+              <stringProp name="Argument.value">1383350400000</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="tierBStartDate" elementType="Argument">
+              <stringProp name="Argument.name">tierBStartDate</stringProp>
+              <stringProp name="Argument.value">1370678400000</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="tierCStartDate" elementType="Argument">
+              <stringProp name="Argument.name">tierCStartDate</stringProp>
+              <stringProp name="Argument.value">1346486400000</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="tierAEndDate" elementType="Argument">
+              <stringProp name="Argument.name">tierAEndDate</stringProp>
+              <stringProp name="Argument.value">1389571200000</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="tierBEndDate" elementType="Argument">
+              <stringProp name="Argument.name">tierBEndDate</stringProp>
+              <stringProp name="Argument.value">1375344000000</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="tierCEndDate" elementType="Argument">
+              <stringProp name="Argument.name">tierCEndDate</stringProp>
+              <stringProp name="Argument.value">1351756800000</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">text/xml;charset=UTF-8</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">VTRouteValues</stringProp>
+              <stringProp name="Header.value">{&quot;Values&quot;:{&quot;WorkspaceId&quot;:&quot;${userCounter}&quot;}}</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="facet-SiteDomain" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${searchURL}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:search&gt;
+&lt;querySpecification&gt;
+
+  &lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;searchQuerySpecification /&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;ford&lt;/query&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;filters&gt;
+
+            &lt;key&gt;Language&lt;/key&gt;
+
+            &lt;values&gt;en&lt;/values&gt;
+
+            &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;dateRange&gt;
+
+          &lt;startDate&gt;${tierCStartDate}&lt;/startDate&gt;
+
+          &lt;endDate&gt;${tierCEndDate}&lt;/endDate&gt;
+
+        &lt;/dateRange&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;0&lt;/workspaceId&gt;
+
+&lt;/querySpecification&gt;
+
+&lt;searchResultSpecification&gt;
+
+  &lt;facets&gt;
+
+    &lt;distinctColumns&gt;0&lt;/distinctColumns&gt;
+
+    &lt;estimateAbove&gt;-1&lt;/estimateAbove&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;SiteDomain&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+    &lt;minCount&gt;0&lt;/minCount&gt;
+
+    &lt;orderBy&gt;HitsDesc&lt;/orderBy&gt;
+
+    &lt;topCount&gt;5&lt;/topCount&gt;
+
+    &lt;totalDocuments&gt;0&lt;/totalDocuments&gt;
+
+  &lt;/facets&gt;
+
+  &lt;sort&gt;
+    &lt;sortDirection&gt;ASC&lt;/sortDirection&gt;
+    &lt;fieldName&gt;PublishedDT&lt;/fieldName&gt;
+  &lt;/sort&gt;
+
+  &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;5&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+
+  &lt;allowEstimation&gt;true&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;1&lt;/securityBitmask&gt;
+
+&lt;/searchResultSpecification&gt;
+
+      &lt;/end:search&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree/>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Test Action" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration"></stringProp>
+        </TestAction>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="facet-AuthorDomain" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${searchURL}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:search&gt;
+&lt;querySpecification&gt;
+
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;searchQuerySpecification /&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;ford&lt;/query&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;Language&lt;/key&gt;
+
+          &lt;values&gt;en&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+       &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;dateRange&gt;
+
+          &lt;startDate&gt;${tierCStartDate}&lt;/startDate&gt;
+
+          &lt;endDate&gt;${tierCEndDate}&lt;/endDate&gt;
+
+        &lt;/dateRange&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;0&lt;/workspaceId&gt;
+
+&lt;/querySpecification&gt;
+
+&lt;searchResultSpecification&gt;
+
+  &lt;facets&gt;
+
+    &lt;distinctColumns&gt;2&lt;/distinctColumns&gt;
+
+    &lt;estimateAbove&gt;-1&lt;/estimateAbove&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;MediaType&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;Author&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;SiteDomain&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+    &lt;minCount&gt;0&lt;/minCount&gt;
+
+    &lt;orderBy&gt;HitsDesc&lt;/orderBy&gt;
+
+    &lt;topCount&gt;5&lt;/topCount&gt;
+
+    &lt;totalDocuments&gt;0&lt;/totalDocuments&gt;
+
+  &lt;/facets&gt;
+
+  &lt;sort&gt;
+    &lt;sortDirection&gt;ASC&lt;/sortDirection&gt;
+    &lt;fieldName&gt;PublishedDT&lt;/fieldName&gt;
+  &lt;/sort&gt;
+
+  &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;5&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+
+  &lt;allowEstimation&gt;true&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;1&lt;/securityBitmask&gt;
+
+&lt;/searchResultSpecification&gt;
+
+      &lt;/end:search&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="termCloud-compareTwoSearches" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${searchURL}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:searchCompareQueries&gt;
+         &lt;querySpecA&gt;
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;ford&lt;/query&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;MediaType&lt;/key&gt;
+
+          &lt;values&gt;Forum&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;Language&lt;/key&gt;
+
+          &lt;values&gt;en&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;dateRange&gt;
+
+          &lt;startDate&gt;${tierCStartDate}&lt;/startDate&gt;
+
+          &lt;endDate&gt;${tierCEndDate}&lt;/endDate&gt;
+
+        &lt;/dateRange&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;1140&lt;/workspaceId&gt;
+         &lt;/querySpecA&gt;
+         &lt;querySpecB&gt;
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;ford&lt;/query&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;MediaType&lt;/key&gt;
+
+          &lt;values&gt;Blog&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;Language&lt;/key&gt;
+
+          &lt;values&gt;en&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;dateRange&gt;
+
+          &lt;startDate&gt;${tierCStartDate}&lt;/startDate&gt;
+
+          &lt;endDate&gt;${tierCEndDate}&lt;/endDate&gt;
+
+        &lt;/dateRange&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;1140&lt;/workspaceId&gt;
+         &lt;/querySpecB&gt;
+         &lt;maxTerms&gt;20&lt;/maxTerms&gt;
+         &lt;maxDocs&gt;1000&lt;/maxDocs&gt;
+         &lt;maxPhraseLength&gt;20&lt;/maxPhraseLength&gt;
+         &lt;minFrequency&gt;2&lt;/minFrequency&gt;
+         &lt;maxDocumentLength&gt;10000&lt;/maxDocumentLength&gt;
+      &lt;/end:searchCompareQueries&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="search-ContentList" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${searchURL}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:search&gt;
+
+&lt;querySpecification&gt;
+
+  &lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;searchQuerySpecification /&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;water&lt;/query&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;MediaType&lt;/key&gt;
+
+          &lt;values&gt;Blog&lt;/values&gt;
+
+          &lt;values&gt;Forum&lt;/values&gt;
+
+          &lt;values&gt;Microblog&lt;/values&gt;
+
+          &lt;values&gt;News/MSM&lt;/values&gt;
+
+          &lt;values&gt;Bookmarking/Sharing&lt;/values&gt;
+
+          &lt;values&gt;Reviews/Shopping&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;!--filters&gt;
+
+          &lt;key&gt;AuthorInfluenceNumeric&lt;/key&gt;
+
+          &lt;values&gt;81&lt;/values&gt;
+
+          &lt;values&gt;100&lt;/values&gt;
+
+          &lt;values&gt;61&lt;/values&gt;
+
+          &lt;values&gt;80&lt;/values&gt;
+
+          &lt;values&gt;41&lt;/values&gt;
+
+          &lt;values&gt;60&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters--&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;ThreadClassification&lt;/key&gt;
+
+          &lt;values&gt;op&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;Language&lt;/key&gt;
+
+          &lt;values&gt;en&lt;/values&gt;
+          
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;dateRange&gt;
+
+          &lt;startDate&gt;${tierCStartDate}&lt;/startDate&gt;
+
+          &lt;endDate&gt;${tierCEndDate}&lt;/endDate&gt;
+
+        &lt;/dateRange&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;1140&lt;/workspaceId&gt;
+
+&lt;/querySpecification&gt;
+
+&lt;searchResultSpecification&gt;
+
+  &lt;fields&gt;VTKey&lt;/fields&gt;
+
+  &lt;fields&gt;Title&lt;/fields&gt;
+
+  &lt;fields&gt;Author&lt;/fields&gt;
+
+  &lt;fields&gt;Body&lt;/fields&gt;
+
+  &lt;fields&gt;SiteDomain&lt;/fields&gt;
+
+  &lt;fields&gt;Permalink&lt;/fields&gt;
+
+  &lt;fields&gt;PublishedDT&lt;/fields&gt;
+
+  &lt;fields&gt;MediaType&lt;/fields&gt;
+
+  &lt;fields&gt;DampenedTone&lt;/fields&gt;
+
+  &lt;fields&gt;DampenedTone:original&lt;/fields&gt;
+
+  &lt;fields&gt;LxaSentimentLabel&lt;/fields&gt;
+
+  &lt;fields&gt;LxaSentimentLabel:original&lt;/fields&gt;
+
+  &lt;fields&gt;Language&lt;/fields&gt;
+
+  &lt;fields&gt;Tags&lt;/fields&gt;
+
+  &lt;fields&gt;EngagementActionCount&lt;/fields&gt;
+
+  &lt;fields&gt;EngagementStatus&lt;/fields&gt;
+
+  &lt;fields&gt;EngagementTags&lt;/fields&gt;
+
+  &lt;fields&gt;FromId&lt;/fields&gt;
+
+  &lt;fields&gt;AssignedTo&lt;/fields&gt;
+
+  &lt;fields&gt;Links&lt;/fields&gt;
+
+  &lt;fields&gt;RemotePostID&lt;/fields&gt;
+
+  &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;25&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;100&lt;/resultOffset&gt;
+
+  &lt;sort&gt;
+
+    &lt;sortDirection&gt;DESC&lt;/sortDirection&gt;
+
+    &lt;fieldName&gt;NoSort&lt;/fieldName&gt;
+
+  &lt;/sort&gt;
+
+  &lt;allowEstimation&gt;false&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;0&lt;/securityBitmask&gt;
+
+&lt;/searchResultSpecification&gt;
+
+      &lt;/end:search&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="facet-DomainTone" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${searchURL}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:search&gt;
+&lt;querySpecification&gt;
+
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;searchQuerySpecification /&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;ford&lt;/query&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;MediaType&lt;/key&gt;
+
+          &lt;values&gt;Blog&lt;/values&gt;
+
+          &lt;values&gt;Forum&lt;/values&gt;
+
+          &lt;values&gt;Microblog&lt;/values&gt;
+
+          &lt;values&gt;News/MSM&lt;/values&gt;
+
+          &lt;values&gt;Bookmarking/Sharing&lt;/values&gt;
+
+          &lt;values&gt;Reviews/Shopping&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;AuthorInfluenceNumeric&lt;/key&gt;
+
+          &lt;values&gt;81&lt;/values&gt;
+
+          &lt;values&gt;100&lt;/values&gt;
+
+          &lt;values&gt;61&lt;/values&gt;
+
+          &lt;values&gt;80&lt;/values&gt;
+
+          &lt;values&gt;41&lt;/values&gt;
+
+          &lt;values&gt;60&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;ThreadClassification&lt;/key&gt;
+
+          &lt;values&gt;op&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;Language&lt;/key&gt;
+
+          &lt;values&gt;en&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;dateRange&gt;
+
+          &lt;startDate&gt;${tierCStartDate}&lt;/startDate&gt;
+
+          &lt;endDate&gt;${tierCEndDate}&lt;/endDate&gt;
+
+        &lt;/dateRange&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;1140&lt;/workspaceId&gt;
+
+&lt;/querySpecification&gt;
+
+&lt;searchResultSpecification&gt;
+
+  &lt;facets&gt;
+
+    &lt;distinctColumns&gt;0&lt;/distinctColumns&gt;
+
+    &lt;estimateAbove&gt;-1&lt;/estimateAbove&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;SiteDomain&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;Country&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;DampenedTone&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+    &lt;minCount&gt;0&lt;/minCount&gt;
+
+    &lt;orderBy&gt;HitsDesc&lt;/orderBy&gt;
+
+    &lt;topCount&gt;5&lt;/topCount&gt;
+
+    &lt;totalDocuments&gt;0&lt;/totalDocuments&gt;
+
+  &lt;/facets&gt;
+
+  &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;5&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+
+  &lt;allowEstimation&gt;true&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;0&lt;/securityBitmask&gt;
+
+&lt;/searchResultSpecification&gt;
+
+      &lt;/end:search&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="facet-MediaTypeTone" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${searchURL}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:search&gt;
+&lt;querySpecification&gt;
+
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;searchQuerySpecification /&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;ford&lt;/query&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;Language&lt;/key&gt;
+
+          &lt;values&gt;en&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;dateRange&gt;
+
+          &lt;startDate&gt;${tierCStartDate}&lt;/startDate&gt;
+
+          &lt;endDate&gt;${tierCEndDate}&lt;/endDate&gt;
+
+        &lt;/dateRange&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;1140&lt;/workspaceId&gt;
+
+&lt;/querySpecification&gt;
+
+&lt;searchResultSpecification&gt;
+
+  &lt;facets&gt;
+
+    &lt;distinctColumns&gt;0&lt;/distinctColumns&gt;
+
+    &lt;estimateAbove&gt;-1&lt;/estimateAbove&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;MediaType&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;DampenedTone&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+    &lt;minCount&gt;0&lt;/minCount&gt;
+
+    &lt;orderBy&gt;ValueAsc&lt;/orderBy&gt;
+
+    &lt;topCount&gt;2147483647&lt;/topCount&gt;
+
+    &lt;totalDocuments&gt;0&lt;/totalDocuments&gt;
+
+  &lt;/facets&gt;
+
+  &lt;gmtOffsetHour&gt;0&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;0&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+
+  &lt;allowEstimation&gt;true&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;0&lt;/securityBitmask&gt;
+
+&lt;/searchResultSpecification&gt;
+
+      &lt;/end:search&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="pivot" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${searchURL}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:search&gt;
+
+&lt;querySpecification&gt;
+
+  &lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;searchQuerySpecification /&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;water&lt;/query&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;Language&lt;/key&gt;
+
+          &lt;values&gt;en&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;dateRange&gt;
+
+          &lt;startDate&gt;${tierCStartDate}&lt;/startDate&gt;
+
+          &lt;endDate&gt;${tierCEndDate}&lt;/endDate&gt;
+
+        &lt;/dateRange&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;1140&lt;/workspaceId&gt;
+
+&lt;/querySpecification&gt;
+
+&lt;searchResultSpecification&gt;
+
+  &lt;pivots&gt;
+
+    &lt;name&gt;MediaType&lt;/name&gt;
+
+    &lt;requestType&gt;Simple&lt;/requestType&gt;
+
+    &lt;aggregationLevel&gt;None&lt;/aggregationLevel&gt;
+
+    &lt;isDistinct&gt;false&lt;/isDistinct&gt;
+
+    &lt;topCount&gt;15&lt;/topCount&gt;
+
+    &lt;minHitCount&gt;0&lt;/minHitCount&gt;
+
+    &lt;distinctColumns&gt;0&lt;/distinctColumns&gt;
+
+    &lt;sortColumn&gt;0&lt;/sortColumn&gt;
+
+  &lt;/pivots&gt;
+
+  &lt;pivots&gt;
+
+    &lt;name&gt;DampenedTone&lt;/name&gt;
+
+    &lt;requestType&gt;Simple&lt;/requestType&gt;
+
+    &lt;aggregationLevel&gt;None&lt;/aggregationLevel&gt;
+
+    &lt;isDistinct&gt;false&lt;/isDistinct&gt;
+
+    &lt;topCount&gt;4&lt;/topCount&gt;
+
+    &lt;minHitCount&gt;0&lt;/minHitCount&gt;
+
+    &lt;distinctColumns&gt;0&lt;/distinctColumns&gt;
+
+    &lt;sortColumn&gt;0&lt;/sortColumn&gt;
+
+  &lt;/pivots&gt;
+
+  &lt;pivots&gt;
+
+    &lt;name&gt;SiteDomain&lt;/name&gt;
+
+    &lt;requestType&gt;Simple&lt;/requestType&gt;
+
+    &lt;aggregationLevel&gt;None&lt;/aggregationLevel&gt;
+
+    &lt;isDistinct&gt;false&lt;/isDistinct&gt;
+
+    &lt;topCount&gt;100&lt;/topCount&gt;
+
+    &lt;minHitCount&gt;0&lt;/minHitCount&gt;
+
+    &lt;distinctColumns&gt;0&lt;/distinctColumns&gt;
+
+    &lt;sortColumn&gt;0&lt;/sortColumn&gt;
+
+  &lt;/pivots&gt;
+
+  &lt;pivots&gt;
+
+    &lt;name&gt;Country&lt;/name&gt;
+
+    &lt;requestType&gt;Simple&lt;/requestType&gt;
+
+    &lt;aggregationLevel&gt;None&lt;/aggregationLevel&gt;
+
+    &lt;isDistinct&gt;false&lt;/isDistinct&gt;
+
+    &lt;topCount&gt;250&lt;/topCount&gt;
+
+    &lt;minHitCount&gt;0&lt;/minHitCount&gt;
+
+    &lt;distinctColumns&gt;0&lt;/distinctColumns&gt;
+
+    &lt;sortColumn&gt;0&lt;/sortColumn&gt;
+
+  &lt;/pivots&gt;
+
+  &lt;pivots&gt;
+
+    &lt;name&gt;AuthorInfluence&lt;/name&gt;
+
+    &lt;requestType&gt;Simple&lt;/requestType&gt;
+
+    &lt;aggregationLevel&gt;None&lt;/aggregationLevel&gt;
+
+    &lt;isDistinct&gt;false&lt;/isDistinct&gt;
+
+    &lt;topCount&gt;101&lt;/topCount&gt;
+
+    &lt;minHitCount&gt;0&lt;/minHitCount&gt;
+
+    &lt;distinctColumns&gt;0&lt;/distinctColumns&gt;
+
+    &lt;sortColumn&gt;0&lt;/sortColumn&gt;
+
+  &lt;/pivots&gt;
+
+  &lt;pivots&gt;
+
+    &lt;name&gt;LxaSentimentLabel&lt;/name&gt;
+
+    &lt;requestType&gt;Simple&lt;/requestType&gt;
+
+    &lt;aggregationLevel&gt;None&lt;/aggregationLevel&gt;
+
+    &lt;isDistinct&gt;false&lt;/isDistinct&gt;
+
+    &lt;topCount&gt;4&lt;/topCount&gt;
+
+    &lt;minHitCount&gt;0&lt;/minHitCount&gt;
+
+    &lt;distinctColumns&gt;0&lt;/distinctColumns&gt;
+
+    &lt;sortColumn&gt;0&lt;/sortColumn&gt;
+
+  &lt;/pivots&gt;
+
+  &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;25&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+
+  &lt;sort&gt;
+
+    &lt;sortDirection&gt;DESC&lt;/sortDirection&gt;
+
+    &lt;fieldName&gt;NoSort&lt;/fieldName&gt;
+
+  &lt;/sort&gt;
+
+  &lt;allowEstimation&gt;true&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;0&lt;/securityBitmask&gt;
+
+&lt;/searchResultSpecification&gt;
+
+      &lt;/end:search&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="facet-postCount" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${searchURL}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:search&gt;
+&lt;querySpecification&gt;
+
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;searchQuerySpecification /&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;ford&lt;/query&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;MediaType&lt;/key&gt;
+
+          &lt;values&gt;Blog&lt;/values&gt;
+
+          &lt;values&gt;Forum&lt;/values&gt;
+
+          &lt;values&gt;Microblog&lt;/values&gt;
+
+          &lt;values&gt;News/MSM&lt;/values&gt;
+
+          &lt;values&gt;Bookmarking/Sharing&lt;/values&gt;
+
+          &lt;values&gt;Reviews/Shopping&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;AuthorInfluenceNumeric&lt;/key&gt;
+
+          &lt;values&gt;81&lt;/values&gt;
+
+          &lt;values&gt;100&lt;/values&gt;
+
+          &lt;values&gt;61&lt;/values&gt;
+
+          &lt;values&gt;80&lt;/values&gt;
+
+          &lt;values&gt;41&lt;/values&gt;
+
+          &lt;values&gt;60&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;ThreadClassification&lt;/key&gt;
+
+          &lt;values&gt;op&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;Language&lt;/key&gt;
+
+          &lt;values&gt;en&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;dateRange&gt;
+
+          &lt;startDate&gt;${tierCStartDate}&lt;/startDate&gt;
+
+          &lt;endDate&gt;${tierCEndDate}&lt;/endDate&gt;
+
+        &lt;/dateRange&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;1140&lt;/workspaceId&gt;
+
+&lt;/querySpecification&gt;
+
+&lt;searchResultSpecification&gt;
+
+  &lt;facets&gt;
+
+    &lt;distinctColumns&gt;0&lt;/distinctColumns&gt;
+
+    &lt;estimateAbove&gt;-1&lt;/estimateAbove&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;Tags&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+    &lt;minCount&gt;0&lt;/minCount&gt;
+
+    &lt;orderBy&gt;ValueAsc&lt;/orderBy&gt;
+
+    &lt;topCount&gt;2147483647&lt;/topCount&gt;
+
+    &lt;totalDocuments&gt;0&lt;/totalDocuments&gt;
+
+  &lt;/facets&gt;
+
+  &lt;gmtOffsetHour&gt;0&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;0&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+
+  &lt;allowEstimation&gt;true&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;0&lt;/securityBitmask&gt;
+
+&lt;/searchResultSpecification&gt;
+
+      &lt;/end:search&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="facet-PublishVolume" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${searchURL}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:search&gt;
+         &lt;!--Optional:--&gt;
+         &lt;querySpecification&gt;
+            &lt;languageISO&gt;en&lt;/languageISO&gt;
+            &lt;query&gt;
+               &lt;operation&gt;And&lt;/operation&gt;
+               &lt;!--Optional:--&gt;
+               &lt;left&gt;
+               &lt;operation&gt;None&lt;/operation&gt;
+               
+               &lt;searchQuerySpecification&gt;
+               
+                  &lt;query&gt;(2012 OR 2013 OR 2014 OR 2015) movie &lt;/query&gt;
+                  &lt;!--Zero or more repetitions:--&gt;
+                  &lt;filters&gt;
+                     &lt;key&gt;Language&lt;/key&gt;
+                     &lt;!--1 or more repetitions:--&gt;
+                     &lt;values&gt;en&lt;/values&gt;
+                     &lt;exclude&gt;false&lt;/exclude&gt;
+                  &lt;/filters&gt;
+                  &lt;!--Zero or more repetitions:--&gt;
+                  &lt;dateRange&gt;
+                     &lt;startDate&gt;${tierCStartDate}&lt;/startDate&gt;
+                     &lt;endDate&gt;${tierCEndDate}&lt;/endDate&gt;
+                  &lt;/dateRange&gt;
+               &lt;/searchQuerySpecification&gt;
+               &lt;!--Optional:--&gt;
+               &lt;/left&gt;
+               &lt;!--Optional:--&gt;
+               &lt;right&gt;
+               
+               &lt;operation&gt;None&lt;/operation&gt;
+               
+               &lt;searchQuerySpecification&gt;
+               
+               &lt;query&gt;(new OR 2013 OR 2014 OR 2015) horror movie &lt;/query&gt;
+
+      &lt;filters&gt;
+
+        &lt;key&gt;MediaType&lt;/key&gt;
+
+        &lt;values&gt;Blog&lt;/values&gt;
+
+        &lt;values&gt;Forum&lt;/values&gt;
+
+        &lt;values&gt;Microblog&lt;/values&gt;
+
+        &lt;values&gt;Twitter&lt;/values&gt;
+
+        &lt;values&gt;Facebook&lt;/values&gt;
+
+        &lt;values&gt;Other&lt;/values&gt;
+
+        &lt;values&gt;Video/Photo&lt;/values&gt;
+
+        &lt;values&gt;News/MSM&lt;/values&gt;
+
+        &lt;values&gt;Bookmarking/Sharing&lt;/values&gt;
+
+        &lt;values&gt;Reviews/Shopping&lt;/values&gt;
+
+        &lt;values&gt;Social Networking&lt;/values&gt;
+
+        &lt;exclude&gt;false&lt;/exclude&gt;
+
+      &lt;/filters&gt;
+
+      &lt;filters&gt;
+
+        &lt;key&gt;AuthorInfluenceNumeric&lt;/key&gt;
+
+        &lt;values&gt;81&lt;/values&gt;
+
+        &lt;values&gt;100&lt;/values&gt;
+
+        &lt;values&gt;61&lt;/values&gt;
+
+        &lt;values&gt;80&lt;/values&gt;
+
+        &lt;values&gt;41&lt;/values&gt;
+
+        &lt;values&gt;60&lt;/values&gt;
+
+        &lt;values&gt;21&lt;/values&gt;
+
+        &lt;values&gt;40&lt;/values&gt;
+
+        &lt;values&gt;0&lt;/values&gt;
+
+        &lt;values&gt;20&lt;/values&gt;
+
+        &lt;exclude&gt;false&lt;/exclude&gt;
+
+      &lt;/filters&gt;
+
+      &lt;filters&gt;
+
+        &lt;key&gt;ThreadClassification&lt;/key&gt;
+
+        &lt;values&gt;op&lt;/values&gt;
+
+        &lt;values&gt;cm&lt;/values&gt;
+
+        &lt;values&gt;mt&lt;/values&gt;
+
+        &lt;exclude&gt;false&lt;/exclude&gt;
+
+      &lt;/filters&gt;
+
+      &lt;filters&gt;
+
+        &lt;key&gt;LocationId&lt;/key&gt;
+
+        &lt;values&gt;5879092&lt;/values&gt;
+
+        &lt;values&gt;4829764&lt;/values&gt;
+
+        &lt;values&gt;4099753&lt;/values&gt;
+
+        &lt;values&gt;5551752&lt;/values&gt;
+
+        &lt;values&gt;5332921&lt;/values&gt;
+
+        &lt;values&gt;5417618&lt;/values&gt;
+
+        &lt;values&gt;4831725&lt;/values&gt;
+
+        &lt;values&gt;4138106&lt;/values&gt;
+
+        &lt;values&gt;4142224&lt;/values&gt;
+
+        &lt;values&gt;4155751&lt;/values&gt;
+
+        &lt;values&gt;4197000&lt;/values&gt;
+
+        &lt;values&gt;5855797&lt;/values&gt;
+
+        &lt;values&gt;4862182&lt;/values&gt;
+
+        &lt;values&gt;5596512&lt;/values&gt;
+
+        &lt;values&gt;4896861&lt;/values&gt;
+
+        &lt;values&gt;4921868&lt;/values&gt;
+
+        &lt;values&gt;4273857&lt;/values&gt;
+
+        &lt;values&gt;6254925&lt;/values&gt;
+
+        &lt;values&gt;4331987&lt;/values&gt;
+
+        &lt;values&gt;6254926&lt;/values&gt;
+
+        &lt;values&gt;4361885&lt;/values&gt;
+
+        &lt;values&gt;4971068&lt;/values&gt;
+
+        &lt;values&gt;5001836&lt;/values&gt;
+
+        &lt;values&gt;5037779&lt;/values&gt;
+
+        &lt;values&gt;4398678&lt;/values&gt;
+
+        &lt;values&gt;4436296&lt;/values&gt;
+
+        &lt;values&gt;5667009&lt;/values&gt;
+
+        &lt;values&gt;4482348&lt;/values&gt;
+
+        &lt;values&gt;5690763&lt;/values&gt;
+
+        &lt;values&gt;5073708&lt;/values&gt;
+
+        &lt;values&gt;5090174&lt;/values&gt;
+
+        &lt;values&gt;5101760&lt;/values&gt;
+
+        &lt;values&gt;5481136&lt;/values&gt;
+
+        &lt;values&gt;5509151&lt;/values&gt;
+
+        &lt;values&gt;5128638&lt;/values&gt;
+
+        &lt;values&gt;5165418&lt;/values&gt;
+
+        &lt;values&gt;4544379&lt;/values&gt;
+
+        &lt;values&gt;5744337&lt;/values&gt;
+
+        &lt;values&gt;6254927&lt;/values&gt;
+
+        &lt;values&gt;5224323&lt;/values&gt;
+
+        &lt;values&gt;4597040&lt;/values&gt;
+
+        &lt;values&gt;5769223&lt;/values&gt;
+
+        &lt;values&gt;4662168&lt;/values&gt;
+
+        &lt;values&gt;4736286&lt;/values&gt;
+
+        &lt;values&gt;5549030&lt;/values&gt;
+
+        &lt;values&gt;6254928&lt;/values&gt;
+
+        &lt;values&gt;5242283&lt;/values&gt;
+
+        &lt;values&gt;5815135&lt;/values&gt;
+
+        &lt;values&gt;5279468&lt;/values&gt;
+
+        &lt;values&gt;4826850&lt;/values&gt;
+
+        &lt;values&gt;5843591&lt;/values&gt;
+
+        &lt;values&gt;3041565&lt;/values&gt;
+
+        &lt;values&gt;783754&lt;/values&gt;
+
+        &lt;values&gt;2782113&lt;/values&gt;
+
+        &lt;values&gt;661882&lt;/values&gt;
+
+        &lt;values&gt;3277605&lt;/values&gt;
+
+        &lt;values&gt;2802361&lt;/values&gt;
+
+        &lt;values&gt;732800&lt;/values&gt;
+
+        &lt;values&gt;630336&lt;/values&gt;
+
+        &lt;values&gt;2658434&lt;/values&gt;
+
+        &lt;values&gt;146669&lt;/values&gt;
+
+        &lt;values&gt;3077311&lt;/values&gt;
+
+        &lt;values&gt;2921044&lt;/values&gt;
+
+        &lt;values&gt;2623032&lt;/values&gt;
+
+        &lt;values&gt;453733&lt;/values&gt;
+
+        &lt;values&gt;2510769&lt;/values&gt;
+
+        &lt;values&gt;660013&lt;/values&gt;
+
+        &lt;values&gt;2622320&lt;/values&gt;
+
+        &lt;values&gt;3017382&lt;/values&gt;
+
+        &lt;values&gt;2635167&lt;/values&gt;
+
+        &lt;values&gt;3042362&lt;/values&gt;
+
+        &lt;values&gt;2411586&lt;/values&gt;
+
+        &lt;values&gt;390903&lt;/values&gt;
+
+        &lt;values&gt;3202326&lt;/values&gt;
+
+        &lt;values&gt;719819&lt;/values&gt;
+
+        &lt;values&gt;2963597&lt;/values&gt;
+
+        &lt;values&gt;3042225&lt;/values&gt;
+
+        &lt;values&gt;2629691&lt;/values&gt;
+
+        &lt;values&gt;3175395&lt;/values&gt;
+
+        &lt;values&gt;3042142&lt;/values&gt;
+
+        &lt;values&gt;831053&lt;/values&gt;
+
+        &lt;values&gt;3042058&lt;/values&gt;
+
+        &lt;values&gt;597427&lt;/values&gt;
+
+        &lt;values&gt;2960313&lt;/values&gt;
+
+        &lt;values&gt;458258&lt;/values&gt;
+
+        &lt;values&gt;2993457&lt;/values&gt;
+
+        &lt;values&gt;617790&lt;/values&gt;
+
+        &lt;values&gt;3194884&lt;/values&gt;
+
+        &lt;values&gt;718075&lt;/values&gt;
+
+        &lt;values&gt;2562770&lt;/values&gt;
+
+        &lt;values&gt;2750405&lt;/values&gt;
+
+        &lt;values&gt;3144096&lt;/values&gt;
+
+        &lt;values&gt;798544&lt;/values&gt;
+
+        &lt;values&gt;2264397&lt;/values&gt;
+
+        &lt;values&gt;798549&lt;/values&gt;
+
+        &lt;values&gt;6290252&lt;/values&gt;
+
+        &lt;values&gt;2017370&lt;/values&gt;
+
+        &lt;values&gt;2661886&lt;/values&gt;
+
+        &lt;values&gt;3190538&lt;/values&gt;
+
+        &lt;values&gt;607072&lt;/values&gt;
+
+        &lt;values&gt;3057568&lt;/values&gt;
+
+        &lt;values&gt;3168068&lt;/values&gt;
+
+        &lt;values&gt;690791&lt;/values&gt;
+
+        &lt;values&gt;3164670&lt;/values&gt;
+
+        &lt;values&gt;290557&lt;/values&gt;
+
+        &lt;values&gt;1149361&lt;/values&gt;
+
+        &lt;values&gt;174982&lt;/values&gt;
+
+        &lt;values&gt;587116&lt;/values&gt;
+
+        &lt;values&gt;1210997&lt;/values&gt;
+
+        &lt;values&gt;290291&lt;/values&gt;
+
+        &lt;values&gt;1820814&lt;/values&gt;
+
+        &lt;values&gt;1252634&lt;/values&gt;
+
+        &lt;values&gt;1547376&lt;/values&gt;
+
+        &lt;values&gt;1814991&lt;/values&gt;
+
+        &lt;values&gt;2078138&lt;/values&gt;
+
+        &lt;values&gt;614540&lt;/values&gt;
+
+        &lt;values&gt;1819730&lt;/values&gt;
+
+        &lt;values&gt;1643084&lt;/values&gt;
+
+        &lt;values&gt;294640&lt;/values&gt;
+
+        &lt;values&gt;1269750&lt;/values&gt;
+
+        &lt;values&gt;1282588&lt;/values&gt;
+
+        &lt;values&gt;99237&lt;/values&gt;
+
+        &lt;values&gt;130758&lt;/values&gt;
+
+        &lt;values&gt;248816&lt;/values&gt;
+
+        &lt;values&gt;1861060&lt;/values&gt;
+
+        &lt;values&gt;1527747&lt;/values&gt;
+
+        &lt;values&gt;1831722&lt;/values&gt;
+
+        &lt;values&gt;1873107&lt;/values&gt;
+
+        &lt;values&gt;1835841&lt;/values&gt;
+
+        &lt;values&gt;285570&lt;/values&gt;
+
+        &lt;values&gt;1522867&lt;/values&gt;
+
+        &lt;values&gt;1655842&lt;/values&gt;
+
+        &lt;values&gt;272103&lt;/values&gt;
+
+        &lt;values&gt;1227603&lt;/values&gt;
+
+        &lt;values&gt;1327865&lt;/values&gt;
+
+        &lt;values&gt;2029969&lt;/values&gt;
+
+        &lt;values&gt;1821275&lt;/values&gt;
+
+        &lt;values&gt;1282028&lt;/values&gt;
+
+        &lt;values&gt;1733045&lt;/values&gt;
+
+        &lt;values&gt;1282988&lt;/values&gt;
+
+        &lt;values&gt;286963&lt;/values&gt;
+
+        &lt;values&gt;1694008&lt;/values&gt;
+
+        &lt;values&gt;1168579&lt;/values&gt;
+
+        &lt;values&gt;6254930&lt;/values&gt;
+
+        &lt;values&gt;289688&lt;/values&gt;
+
+        &lt;values&gt;102358&lt;/values&gt;
+
+        &lt;values&gt;1880251&lt;/values&gt;
+
+        &lt;values&gt;163843&lt;/values&gt;
+
+        &lt;values&gt;1605651&lt;/values&gt;
+
+        &lt;values&gt;1220409&lt;/values&gt;
+
+        &lt;values&gt;1218197&lt;/values&gt;
+
+        &lt;values&gt;298795&lt;/values&gt;
+
+        &lt;values&gt;1668284&lt;/values&gt;
+
+        &lt;values&gt;1512440&lt;/values&gt;
+
+        &lt;values&gt;1562822&lt;/values&gt;
+
+        &lt;values&gt;69543&lt;/values&gt;
+
+        &lt;exclude&gt;false&lt;/exclude&gt;
+
+      &lt;/filters&gt;
+
+    &lt;/searchQuerySpecification&gt;
+
+  &lt;/right&gt;
+                 
+            &lt;/query&gt;
+            &lt;!--Optional:--&gt;
+            &lt;workspaceId&gt;1140&lt;/workspaceId&gt;
+         &lt;/querySpecification&gt;
+         &lt;!--Optional:--&gt;
+         &lt;searchResultSpecification&gt;
+            &lt;!--1 or more repetitions:--&gt;
+  &lt;facets&gt;
+
+    &lt;distinctColumns&gt;0&lt;/distinctColumns&gt;
+
+    &lt;estimateAbove&gt;-1&lt;/estimateAbove&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;PublishedHour&lt;/name&gt;
+
+      &lt;aggregation&gt;CustomEpochRanges&lt;/aggregation&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201201&lt;/label&gt;
+
+        &lt;begin&gt;1325836800000&lt;/begin&gt;
+
+        &lt;end&gt;1328083199999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201202&lt;/label&gt;
+
+        &lt;begin&gt;1328083200000&lt;/begin&gt;
+
+        &lt;end&gt;1330588799999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201203&lt;/label&gt;
+
+        &lt;begin&gt;1330588800000&lt;/begin&gt;
+
+        &lt;end&gt;1333267199999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201204&lt;/label&gt;
+
+        &lt;begin&gt;1333267200000&lt;/begin&gt;
+
+        &lt;end&gt;1335859199999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201205&lt;/label&gt;
+
+        &lt;begin&gt;1335859200000&lt;/begin&gt;
+
+        &lt;end&gt;1338537599999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201206&lt;/label&gt;
+
+        &lt;begin&gt;1338537600000&lt;/begin&gt;
+
+        &lt;end&gt;1341129599999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201207&lt;/label&gt;
+
+        &lt;begin&gt;1341129600000&lt;/begin&gt;
+
+        &lt;end&gt;1343807999999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201208&lt;/label&gt;
+
+        &lt;begin&gt;1343808000000&lt;/begin&gt;
+
+        &lt;end&gt;1346486399999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201209&lt;/label&gt;
+
+        &lt;begin&gt;1346486400000&lt;/begin&gt;
+
+        &lt;end&gt;1349078399999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201210&lt;/label&gt;
+
+        &lt;begin&gt;1349078400000&lt;/begin&gt;
+
+        &lt;end&gt;1351756799999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201211&lt;/label&gt;
+
+        &lt;begin&gt;1351756800000&lt;/begin&gt;
+
+        &lt;end&gt;1354348799999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201212&lt;/label&gt;
+
+        &lt;begin&gt;1354348800000&lt;/begin&gt;
+
+        &lt;end&gt;1357027199999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201301&lt;/label&gt;
+
+        &lt;begin&gt;1357027200000&lt;/begin&gt;
+
+        &lt;end&gt;1359705599999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201302&lt;/label&gt;
+
+        &lt;begin&gt;1359705600000&lt;/begin&gt;
+
+        &lt;end&gt;1362124799999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201303&lt;/label&gt;
+
+        &lt;begin&gt;1362124800000&lt;/begin&gt;
+
+        &lt;end&gt;1364803199999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201304&lt;/label&gt;
+
+        &lt;begin&gt;1364803200000&lt;/begin&gt;
+
+        &lt;end&gt;1367395199999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201305&lt;/label&gt;
+
+        &lt;begin&gt;1367395200000&lt;/begin&gt;
+
+        &lt;end&gt;1370073599999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201306&lt;/label&gt;
+
+        &lt;begin&gt;1370073600000&lt;/begin&gt;
+
+        &lt;end&gt;1372665599999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201307&lt;/label&gt;
+
+        &lt;begin&gt;1372665600000&lt;/begin&gt;
+
+        &lt;end&gt;1375343999999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201308&lt;/label&gt;
+
+        &lt;begin&gt;1375344000000&lt;/begin&gt;
+
+        &lt;end&gt;1378022399999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201309&lt;/label&gt;
+
+        &lt;begin&gt;1378022400000&lt;/begin&gt;
+
+        &lt;end&gt;1380614399999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201310&lt;/label&gt;
+
+        &lt;begin&gt;1380614400000&lt;/begin&gt;
+
+        &lt;end&gt;1383292799999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201311&lt;/label&gt;
+
+        &lt;begin&gt;1383292800000&lt;/begin&gt;
+
+        &lt;end&gt;1385884799999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201312&lt;/label&gt;
+
+        &lt;begin&gt;1385884800000&lt;/begin&gt;
+
+        &lt;end&gt;1388563199999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201401&lt;/label&gt;
+
+        &lt;begin&gt;1388563200000&lt;/begin&gt;
+
+        &lt;end&gt;1389081599000&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+    &lt;/fields&gt;
+
+    &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+    &lt;minCount&gt;0&lt;/minCount&gt;
+
+    &lt;orderBy&gt;ValueAsc&lt;/orderBy&gt;
+
+    &lt;topCount&gt;2147483647&lt;/topCount&gt;
+
+    &lt;totalDocuments&gt;0&lt;/totalDocuments&gt;
+
+  &lt;/facets&gt;
+
+  &lt;gmtOffsetHour&gt;0&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;0&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+
+  &lt;allowEstimation&gt;true&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;0&lt;/securityBitmask&gt;
+
+         &lt;/searchResultSpecification&gt;
+      &lt;/end:search&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="generateTermCloud" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${searchURL}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:generateTermCloud&gt;
+
+&lt;querySpecification&gt;
+
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;searchQuerySpecification /&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;water&lt;/query&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;MediaType&lt;/key&gt;
+
+          &lt;values&gt;Blog&lt;/values&gt;
+
+          &lt;values&gt;Forum&lt;/values&gt;
+
+          &lt;values&gt;Microblog&lt;/values&gt;
+
+          &lt;values&gt;News/MSM&lt;/values&gt;
+
+          &lt;values&gt;Bookmarking/Sharing&lt;/values&gt;
+
+          &lt;values&gt;Reviews/Shopping&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;AuthorInfluenceNumeric&lt;/key&gt;
+
+          &lt;values&gt;81&lt;/values&gt;
+
+          &lt;values&gt;100&lt;/values&gt;
+
+          &lt;values&gt;61&lt;/values&gt;
+
+          &lt;values&gt;80&lt;/values&gt;
+
+          &lt;values&gt;41&lt;/values&gt;
+
+          &lt;values&gt;60&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;ThreadClassification&lt;/key&gt;
+
+          &lt;values&gt;op&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;Language&lt;/key&gt;
+
+          &lt;values&gt;en&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;dateRange&gt;
+
+          &lt;startDate&gt;${tierCStartDate}&lt;/startDate&gt;
+
+          &lt;endDate&gt;${tierCEndDate}&lt;/endDate&gt;
+
+        &lt;/dateRange&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;1140&lt;/workspaceId&gt;
+
+&lt;/querySpecification&gt;
+
+         &lt;maxTerms&gt;100&lt;/maxTerms&gt;
+         &lt;maxDocs&gt;1000&lt;/maxDocs&gt;
+         &lt;maxPhraseLength&gt;4&lt;/maxPhraseLength&gt;
+         &lt;minFrequency&gt;2&lt;/minFrequency&gt;
+         &lt;maxDocumentLength&gt;10000&lt;/maxDocumentLength&gt;
+      &lt;/end:generateTermCloud&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="facet-ToneEpochRange" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${searchURL}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:search&gt;
+&lt;querySpecification&gt;
+
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;searchQuerySpecification /&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;ford&lt;/query&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;Language&lt;/key&gt;
+
+          &lt;values&gt;en&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;DampenedTone&lt;/key&gt;
+
+          &lt;values&gt;Positive&lt;/values&gt;
+
+          &lt;values&gt;Negative&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;dateRange&gt;
+
+          &lt;startDate&gt;${tierCStartDate}&lt;/startDate&gt;
+
+          &lt;endDate&gt;${tierCEndDate}&lt;/endDate&gt;
+
+        &lt;/dateRange&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;1140&lt;/workspaceId&gt;
+
+&lt;/querySpecification&gt;
+
+&lt;searchResultSpecification&gt;
+
+  &lt;facets&gt;
+
+    &lt;distinctColumns&gt;0&lt;/distinctColumns&gt;
+
+    &lt;estimateAbove&gt;-1&lt;/estimateAbove&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;PublishedHour&lt;/name&gt;
+
+      &lt;aggregation&gt;CustomEpochRanges&lt;/aggregation&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201301&lt;/label&gt;
+
+        &lt;begin&gt;1357027200000&lt;/begin&gt;
+
+        &lt;end&gt;1359705599999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201302&lt;/label&gt;
+
+        &lt;begin&gt;1359705600000&lt;/begin&gt;
+
+        &lt;end&gt;1362124799999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201303&lt;/label&gt;
+
+        &lt;begin&gt;1362124800000&lt;/begin&gt;
+
+        &lt;end&gt;1364803199999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201304&lt;/label&gt;
+
+        &lt;begin&gt;1364803200000&lt;/begin&gt;
+
+        &lt;end&gt;1367395199999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201305&lt;/label&gt;
+
+        &lt;begin&gt;1367395200000&lt;/begin&gt;
+
+        &lt;end&gt;1370073599999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201306&lt;/label&gt;
+
+        &lt;begin&gt;1370073600000&lt;/begin&gt;
+
+        &lt;end&gt;1372665599999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201307&lt;/label&gt;
+
+        &lt;begin&gt;1372665600000&lt;/begin&gt;
+
+        &lt;end&gt;1375343999999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201308&lt;/label&gt;
+
+        &lt;begin&gt;1375344000000&lt;/begin&gt;
+
+        &lt;end&gt;1378022399999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201309&lt;/label&gt;
+
+        &lt;begin&gt;1378022400000&lt;/begin&gt;
+
+        &lt;end&gt;1380614399999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+     &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201310&lt;/label&gt;
+
+        &lt;begin&gt;1380614400000&lt;/begin&gt;
+
+        &lt;end&gt;1383263999999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201311&lt;/label&gt;
+
+        &lt;begin&gt;1383264000000&lt;/begin&gt;
+
+        &lt;end&gt;1385855999999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201312&lt;/label&gt;
+
+        &lt;begin&gt;1385856000000&lt;/begin&gt;
+
+        &lt;end&gt;1388534399999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+      &lt;customEpochRanges&gt;
+
+        &lt;label&gt;201401&lt;/label&gt;
+
+        &lt;begin&gt;1388534400000&lt;/begin&gt;
+
+        &lt;end&gt;1391212799999&lt;/end&gt;
+
+      &lt;/customEpochRanges&gt;
+
+    &lt;/fields&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;DampenedTone&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+    &lt;minCount&gt;0&lt;/minCount&gt;
+
+    &lt;orderBy&gt;ValueAsc&lt;/orderBy&gt;
+
+    &lt;topCount&gt;2147483647&lt;/topCount&gt;
+
+    &lt;totalDocuments&gt;0&lt;/totalDocuments&gt;
+
+  &lt;/facets&gt;
+
+  &lt;sort&gt;
+    &lt;sortDirection&gt;ASC&lt;/sortDirection&gt;
+    &lt;fieldName&gt;PublishedDT&lt;/fieldName&gt;
+  &lt;/sort&gt;
+
+  &lt;gmtOffsetHour&gt;0&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;5&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+
+  &lt;allowEstimation&gt;true&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;1&lt;/securityBitmask&gt;
+
+&lt;/searchResultSpecification&gt;
+
+      &lt;/end:search&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="facet-ToneGeo" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${searchURL}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:search&gt;
+         &lt;querySpecification&gt;
+            &lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;searchQuerySpecification /&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;ford&lt;/query&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;MediaType&lt;/key&gt;
+
+          &lt;values&gt;Blog&lt;/values&gt;
+
+          &lt;values&gt;Forum&lt;/values&gt;
+
+          &lt;values&gt;Microblog&lt;/values&gt;
+
+          &lt;values&gt;News/MSM&lt;/values&gt;
+
+          &lt;values&gt;Bookmarking/Sharing&lt;/values&gt;
+
+          &lt;values&gt;Reviews/Shopping&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;AuthorInfluenceNumeric&lt;/key&gt;
+
+          &lt;values&gt;81&lt;/values&gt;
+
+          &lt;values&gt;100&lt;/values&gt;
+
+          &lt;values&gt;61&lt;/values&gt;
+
+          &lt;values&gt;80&lt;/values&gt;
+
+          &lt;values&gt;41&lt;/values&gt;
+
+          &lt;values&gt;60&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;ThreadClassification&lt;/key&gt;
+
+          &lt;values&gt;op&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+        &lt;filters&gt;
+
+          &lt;key&gt;Language&lt;/key&gt;
+
+          &lt;values&gt;en&lt;/values&gt;
+
+          &lt;exclude&gt;false&lt;/exclude&gt;
+
+        &lt;/filters&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;dateRange&gt;
+
+          &lt;startDate&gt;${tierCStartDate}&lt;/startDate&gt;
+
+          &lt;endDate&gt;${tierCEndDate}&lt;/endDate&gt;
+
+        &lt;/dateRange&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;0&lt;/workspaceId&gt;
+  
+  &lt;/querySpecification&gt;
+
+&lt;searchResultSpecification&gt;
+
+  &lt;facets&gt;
+
+    &lt;distinctColumns&gt;0&lt;/distinctColumns&gt;
+
+    &lt;estimateAbove&gt;-1&lt;/estimateAbove&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;Country&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;DampenedTone&lt;/name&gt;
+
+      &lt;aggregation&gt;ToneRollup&lt;/aggregation&gt;
+
+    &lt;/fields&gt;
+
+    &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+    &lt;minCount&gt;0&lt;/minCount&gt;
+
+    &lt;orderBy&gt;ValueAsc&lt;/orderBy&gt;
+
+    &lt;topCount&gt;2147483647&lt;/topCount&gt;
+
+    &lt;totalDocuments&gt;0&lt;/totalDocuments&gt;
+
+  &lt;/facets&gt;
+
+  &lt;gmtOffsetHour&gt;0&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;0&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+
+  &lt;allowEstimation&gt;true&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;1&lt;/securityBitmask&gt;
+
+&lt;/searchResultSpecification&gt;
+      &lt;/end:search&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="soapResultTree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>true</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>true</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

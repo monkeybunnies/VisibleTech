@@ -1,0 +1,54 @@
+2014-04-01 00:13:13.56,0,search,"<querySpecification><languageISO>en</languageISO>
+  <query>
+    <operation>And</operation>
+    <searchQuerySpecification />
+    <left>
+      <operation>None</operation>
+      <searchQuerySpecification>
+        <query>water</query>
+        <filters>
+          <key>Language</key>
+          <values>en</values>
+          <exclude>false</exclude>
+        </filters>
+        <dateRange>
+          <startDate>1393545600000</startDate>
+          <endDate>1398902400000</endDate>
+        </dateRange>
+      </searchQuerySpecification>
+    </left>
+    <right>
+      <operation>None</operation>
+      <searchQuerySpecification>
+        <filters>
+          <key>SiteDomain</key>
+          <values>foobar.com</values>
+          <exclude>true</exclude>
+        </filters>
+        <filters>
+          <key>SiteDomain</key>
+          <values>foofaa.com</values>
+          <values>toobaa.com</values>
+          <values>whattawatta.com</values>
+          <values>testtesttest.com</values>
+          <exclude>true</exclude>
+        </filters>
+      </searchQuerySpecification>
+    </right>
+  </query>
+  <workspaceId>7</workspaceId>
+</querySpecification>
+<searchResultSpecification xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <fields>Author</fields>
+  <fields>Body</fields>
+  <fields>Permalink</fields>
+  <fields>SiteDomain</fields>
+  <fields>Title</fields>
+  <fields>Tone</fields>
+  <fields>PublishedDT</fields>
+  <gmtOffsetHour>0</gmtOffsetHour>
+  <resultCount>50</resultCount>
+  <resultOffset>0</resultOffset>
+  <allowEstimation>false</allowEstimation>
+  <securityBitmask>0</securityBitmask>
+</searchResultSpecification>",7

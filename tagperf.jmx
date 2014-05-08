@@ -1,0 +1,831 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.5" jmeter="2.10 r1533061">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Run Tagging" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1392321783000</longProp>
+        <longProp name="ThreadGroup.end_time">1392321783000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="startTime" elementType="Argument">
+              <stringProp name="Argument.name">startTime</stringProp>
+              <stringProp name="Argument.value">1391473638</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="endTime" elementType="Argument">
+              <stringProp name="Argument.name">endTime</stringProp>
+              <stringProp name="Argument.value">1393892838</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="searchUrl" elementType="Argument">
+              <stringProp name="Argument.name">searchUrl</stringProp>
+              <stringProp name="Argument.value">http://apvip.qa.viq:8080/searchservice/SearchService</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="query" elementType="Argument">
+              <stringProp name="Argument.name">query</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="resultCount" elementType="Argument">
+              <stringProp name="Argument.name">resultCount</stringProp>
+              <stringProp name="Argument.value">2000</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="tagUrl" elementType="Argument">
+              <stringProp name="Argument.name">tagUrl</stringProp>
+              <stringProp name="Argument.value">http://tomcat01.qa.viq:8080/DataService/TagService</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="overrideUrl" elementType="Argument">
+              <stringProp name="Argument.name">overrideUrl</stringProp>
+              <stringProp name="Argument.value">http://tomcat01.qa.viq:8080/DataService/OverrideService</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="Test post position after tag" enabled="false">
+          <stringProp name="WhileController.condition">LAST</stringProp>
+        </WhileController>
+        <hashTree>
+          <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="search before tag" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="SoapSampler.URL_DATA">${searchUrl}</stringProp>
+            <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:search&gt;
+&lt;querySpecification&gt;
+
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;searchQuerySpecification /&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;${query}&lt;/query&gt;
+        
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+      &lt;query&gt;&lt;/query&gt;
+
+        &lt;dateRange&gt;
+           &lt;startDate&gt;${startTime}000&lt;/startDate&gt;
+           &lt;endDate&gt;${endTime}000&lt;/endDate&gt;
+        &lt;/dateRange&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;35&lt;/workspaceId&gt;
+
+&lt;/querySpecification&gt;
+
+&lt;searchResultSpecification&gt;
+
+  &lt;fields&gt;VTKey&lt;/fields&gt;
+
+  &lt;gmtOffsetHour&gt;0&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;${resultCount}&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+
+  &lt;sort&gt;
+     &lt;sortDirection&gt;DESC&lt;/sortDirection&gt;
+     &lt;fieldName&gt;NoSort&lt;/fieldName&gt;
+  &lt;/sort&gt;
+
+  &lt;allowEstimation&gt;true&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;0&lt;/securityBitmask&gt;
+
+&lt;/searchResultSpecification&gt;
+
+      &lt;/end:search&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+            <stringProp name="SoapSampler.xml_data_file"></stringProp>
+            <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+            <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          </SoapSampler>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor get first vtkey" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">first_vtkey_before_tag</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;value&gt;(.+?)&lt;/value&gt;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">NULL</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Test Action" enabled="true">
+            <intProp name="ActionProcessor.action">1</intProp>
+            <intProp name="ActionProcessor.target">0</intProp>
+            <stringProp name="ActionProcessor.duration">1000</stringProp>
+          </TestAction>
+          <hashTree/>
+          <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="tag until position fixed" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="SoapSampler.URL_DATA">${tagUrl}</stringProp>
+            <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.tagservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:addWorkspaceTagsBulk&gt;
+         &lt;!--Zero or more repetitions:--&gt;
+          &lt;tagIds&gt;35&lt;/tagIds&gt;
+         &lt;workspaceId&gt;35&lt;/workspaceId&gt;
+         &lt;!--Zero or more repetitions:--&gt;
+         &lt;vtKeys&gt;${first_vtkey_before_tag}&lt;/vtKeys&gt;
+      &lt;/end:addWorkspaceTagsBulk&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+            <stringProp name="SoapSampler.xml_data_file"></stringProp>
+            <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+            <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          </SoapSampler>
+          <hashTree/>
+          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Test Action" enabled="true">
+            <intProp name="ActionProcessor.action">1</intProp>
+            <intProp name="ActionProcessor.target">0</intProp>
+            <stringProp name="ActionProcessor.duration">1000</stringProp>
+          </TestAction>
+          <hashTree/>
+          <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="search after tag" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="SoapSampler.URL_DATA">${searchUrl}</stringProp>
+            <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:search&gt;
+&lt;querySpecification&gt;
+
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;searchQuerySpecification /&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;${query}&lt;/query&gt;
+        
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+      &lt;query&gt;&lt;/query&gt;
+
+        &lt;dateRange&gt;
+           &lt;startDate&gt;${startTime}000&lt;/startDate&gt;
+           &lt;endDate&gt;${endTime}000&lt;/endDate&gt;
+        &lt;/dateRange&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;35&lt;/workspaceId&gt;
+
+&lt;/querySpecification&gt;
+
+&lt;searchResultSpecification&gt;
+
+  &lt;fields&gt;VTKey&lt;/fields&gt;
+
+  &lt;gmtOffsetHour&gt;0&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;${resultCount}&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+
+  &lt;sort&gt;
+     &lt;sortDirection&gt;DESC&lt;/sortDirection&gt;
+     &lt;fieldName&gt;NoSort&lt;/fieldName&gt;
+  &lt;/sort&gt;
+
+  &lt;allowEstimation&gt;true&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;0&lt;/securityBitmask&gt;
+
+&lt;/searchResultSpecification&gt;
+
+      &lt;/end:search&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+            <stringProp name="SoapSampler.xml_data_file"></stringProp>
+            <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+            <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          </SoapSampler>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor get first vtkey" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">first_vtkey_after_tag</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;value&gt;(.+?)&lt;/value&gt;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">NULL</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell update time and vtkey after tag" enabled="true">
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="script">int start = Integer.parseInt(vars.get(&quot;startTime&quot;));
+
+start = start + 50000;
+
+vars.put(&quot;startTime&quot;, Integer.toString(start) );
+</stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell Assertion" enabled="true">
+              <stringProp name="BeanShellAssertion.query">String v1 = vars.get(&quot;first_vtkey_after_tag&quot;);
+
+String v2 = vars.get(&quot;first_vtkey_before_tag&quot;);
+
+if ( v1.equals(v2) ) {
+	log.info(&quot;first vtkey before tagging was &quot; + v2);
+	
+	log.info(&quot;first vtkey after  tagging was &quot; + v1);
+
+	Failure = true;
+
+	FailureMessage = &quot;The first tagged post stayed, end of while loop!&quot;;
+}
+else {
+	Failure = false;
+}
+</stringProp>
+              <stringProp name="BeanShellAssertion.filename"></stringProp>
+              <stringProp name="BeanShellAssertion.parameters"></stringProp>
+              <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+            </BeanShellAssertion>
+            <hashTree/>
+          </hashTree>
+          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Test Action" enabled="true">
+            <intProp name="ActionProcessor.action">1</intProp>
+            <intProp name="ActionProcessor.target">0</intProp>
+            <stringProp name="ActionProcessor.duration">1000</stringProp>
+          </TestAction>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="search" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${searchUrl}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:search&gt;
+&lt;querySpecification&gt;
+
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;searchQuerySpecification /&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;@askamex OR @askamexuk OR @serve OR @americanexpress OR @openforum OR @fedexlina OR @fedexdolores OR @fedexrobin OR @fedexal OR @fedexlashelia OR @fedexcanadahelp OR @fedexcanada OR @fedexteayuda OR @fedexlheajuda OR @fedexdelivers OR @fedexnews OR @fedexcares OR @askserve OR @skamexau&lt;/query&gt;
+
+        &lt;filters&gt;
+          &lt;key&gt;Language&lt;/key&gt;
+          &lt;values&gt;es&lt;/values&gt;
+          &lt;values&gt;ru&lt;/values&gt;
+          &lt;exclude&gt;false&lt;/exclude&gt;
+        &lt;/filters&gt;
+        
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+      &lt;query&gt;&lt;/query&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;1140&lt;/workspaceId&gt;
+
+&lt;/querySpecification&gt;
+
+&lt;searchResultSpecification&gt;
+
+  &lt;fields&gt;VTKey&lt;/fields&gt;
+
+  &lt;gmtOffsetHour&gt;0&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;300&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+
+  &lt;sort&gt;
+     &lt;sortDirection&gt;DESC&lt;/sortDirection&gt;
+     &lt;fieldName&gt;PublishedDT&lt;/fieldName&gt;
+  &lt;/sort&gt;
+
+  &lt;allowEstimation&gt;true&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;0&lt;/securityBitmask&gt;
+
+&lt;/searchResultSpecification&gt;
+
+      &lt;/end:search&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor get first vtkey" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">vtkeys</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;value&gt;(.+?)&lt;/value&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">NULL</stringProp>
+            <stringProp name="RegexExtractor.match_number">-1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell update first vtkey before tag" enabled="false">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">String s = vars.get(&quot;first_vtkey_before_tag&quot;);
+
+vars.put(&quot;before&quot;, s);
+</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="false">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.io.*;
+import javax.xml.parsers.*;
+import javax.xml.xpath.*;
+import org.w3c.dom.*;
+import org.xml.sax.SAXException;
+
+import org.apache.jmeter.samplers.SampleResult;
+
+// set here your xpath expression (to extract EVERY key, not any separate one)
+String xpathExpr = &quot;//return/results/fields/value/text()&quot;;
+
+try {
+    DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
+    domFactory.setNamespaceAware(true);
+    DocumentBuilder builder = domFactory.newDocumentBuilder();
+
+    // access result of parent sampler via &quot;ctx&quot; BeanShell variable        
+    SampleResult result = ctx.getPreviousResult();
+    InputSource is = new InputSource(new StringReader(result.getResponseDataAsString()));
+    Document doc = builder.parse(is);
+
+    XPath xpath = XPathFactory.newInstance().newXPath();
+    XPathExpression expr = xpath.compile(xpathExpr);
+    NodeList nodes = (NodeList)expr.evaluate(doc, XPathConstants.NODESET);
+
+    // extract all the keys in loop
+    for (int i = 0; i &lt; nodes.getLength(); i++) {
+        String key = nodes.item(i).getNodeValue();
+
+        System.out.println(key);
+
+        // save extracted key as separate jmeter variables        
+        String keyName = &quot;key_&quot; + Integer.toString(i);
+        vars.put(keyName,key);
+    }
+} catch (Exception ex) {
+    IsSuccess = false;
+    log.error(ex.getMessage());
+    ex.printStackTrace();
+}</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+          <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Extractor" enabled="false">
+            <stringProp name="XPathExtractor.default">0</stringProp>
+            <stringProp name="XPathExtractor.refname">vtkey</stringProp>
+            <stringProp name="XPathExtractor.xpathQuery">//return/results[${index}]/fields/value</stringProp>
+            <boolProp name="XPathExtractor.validate">false</boolProp>
+            <boolProp name="XPathExtractor.tolerant">false</boolProp>
+            <boolProp name="XPathExtractor.namespace">false</boolProp>
+            <stringProp name="Scope.variable">search</stringProp>
+          </XPathExtractor>
+          <hashTree/>
+        </hashTree>
+        <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller" enabled="true">
+          <stringProp name="ForeachController.inputVal">vtkeys</stringProp>
+          <stringProp name="ForeachController.returnVal">vtkey</stringProp>
+          <boolProp name="ForeachController.useSeparator">true</boolProp>
+        </ForeachController>
+        <hashTree>
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="workspaceId" enabled="false">
+            <stringProp name="CounterConfig.start">1</stringProp>
+            <stringProp name="CounterConfig.end">33000</stringProp>
+            <stringProp name="CounterConfig.incr">1</stringProp>
+            <stringProp name="CounterConfig.name">workspaceId</stringProp>
+            <stringProp name="CounterConfig.format"></stringProp>
+            <boolProp name="CounterConfig.per_user">true</boolProp>
+            <boolProp name="CounterConfig.reset_on_tg_iteration">true</boolProp>
+          </CounterConfig>
+          <hashTree/>
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="tagId" enabled="false">
+            <stringProp name="CounterConfig.start">1</stringProp>
+            <stringProp name="CounterConfig.end">15000</stringProp>
+            <stringProp name="CounterConfig.incr">1</stringProp>
+            <stringProp name="CounterConfig.name">tagId</stringProp>
+            <stringProp name="CounterConfig.format"></stringProp>
+            <boolProp name="CounterConfig.per_user">true</boolProp>
+            <boolProp name="CounterConfig.reset_on_tg_iteration">true</boolProp>
+          </CounterConfig>
+          <hashTree/>
+          <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="override" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="SoapSampler.URL_DATA">${overrideUrl}</stringProp>
+            <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.overrideservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:overrideString&gt;
+         &lt;workspaceId&gt;810&lt;/workspaceId&gt;
+         &lt;!--Optional:--&gt;
+         &lt;name&gt;DampenedTone&lt;/name&gt;
+         &lt;!--Optional:--&gt;
+         &lt;value&gt;zappa&lt;/value&gt;
+         &lt;!--Optional:--&gt;
+         &lt;vtKey&gt;${vtkey}&lt;/vtKey&gt;
+        &lt;/end:overrideString&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+            <stringProp name="SoapSampler.xml_data_file"></stringProp>
+            <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+            <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          </SoapSampler>
+          <hashTree/>
+          <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="tag" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="SoapSampler.URL_DATA">${tagUrl}</stringProp>
+            <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.tagservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:addWorkspaceTagsBulk&gt;
+         &lt;!--Zero or more repetitions:--&gt;
+          &lt;tagIds&gt;624&lt;/tagIds&gt;
+         &lt;workspaceId&gt;810&lt;/workspaceId&gt;
+         &lt;!--Zero or more repetitions:--&gt;
+         &lt;vtKeys&gt;${vtkey}&lt;/vtKeys&gt;
+      &lt;/end:addWorkspaceTagsBulk&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+            <stringProp name="SoapSampler.xml_data_file"></stringProp>
+            <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+            <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          </SoapSampler>
+          <hashTree/>
+          <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="delete override" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="SoapSampler.URL_DATA">${overrideUrl}</stringProp>
+            <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.overrideservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:deleteOverride&gt;
+         &lt;workspaceId&gt;810&lt;/workspaceId&gt;
+         &lt;!--Optional:--&gt;
+         &lt;name&gt;DampenedTone&lt;/name&gt;
+         &lt;!--Optional:--&gt;
+         &lt;vtKey&gt;${vtkey}&lt;/vtKey&gt;
+      &lt;/end:deleteOverride&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+            <stringProp name="SoapSampler.xml_data_file"></stringProp>
+            <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+            <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          </SoapSampler>
+          <hashTree/>
+          <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="delete tag" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="SoapSampler.URL_DATA">${tagUrl}</stringProp>
+            <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.tagservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:deleteWorkspaceTagsBulk&gt;
+         &lt;workspaceId&gt;810&lt;/workspaceId&gt;
+         &lt;!--Zero or more repetitions:--&gt;
+         &lt;tagIds&gt;624&lt;/tagIds&gt;
+         &lt;!--Zero or more repetitions:--&gt;
+         &lt;vtKeys&gt;${vtkey}&lt;/vtKeys&gt;
+      &lt;/end:deleteWorkspaceTagsBulk&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+            <stringProp name="SoapSampler.xml_data_file"></stringProp>
+            <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+            <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          </SoapSampler>
+          <hashTree/>
+          <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="tag" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="SoapSampler.URL_DATA">${tagUrl}</stringProp>
+            <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.tagservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:addWorkspaceTagsBulk&gt;
+         &lt;!--Zero or more repetitions:--&gt;
+          &lt;tagIds&gt;624615&lt;/tagIds&gt;
+         &lt;workspaceId&gt;810&lt;/workspaceId&gt;
+         &lt;!--Zero or more repetitions:--&gt;
+         &lt;vtKeys&gt;${vtkey}&lt;/vtKeys&gt;
+      &lt;/end:addWorkspaceTagsBulk&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+            <stringProp name="SoapSampler.xml_data_file"></stringProp>
+            <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+            <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          </SoapSampler>
+          <hashTree/>
+          <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="override" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="SoapSampler.URL_DATA">${overrideUrl}</stringProp>
+            <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.overrideservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:overrideString&gt;
+         &lt;workspaceId&gt;810&lt;/workspaceId&gt;
+         &lt;!--Optional:--&gt;
+         &lt;name&gt;DampenedTone&lt;/name&gt;
+         &lt;!--Optional:--&gt;
+         &lt;value&gt;foobar&lt;/value&gt;
+         &lt;!--Optional:--&gt;
+         &lt;vtKey&gt;${vtkey}&lt;/vtKey&gt;
+        &lt;/end:overrideString&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+            <stringProp name="SoapSampler.xml_data_file"></stringProp>
+            <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+            <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          </SoapSampler>
+          <hashTree/>
+          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="wait" enabled="true">
+            <intProp name="ActionProcessor.action">1</intProp>
+            <intProp name="ActionProcessor.target">0</intProp>
+            <stringProp name="ActionProcessor.duration">500</stringProp>
+          </TestAction>
+          <hashTree/>
+          <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="check tagged OK" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="SoapSampler.URL_DATA">${searchUrl}</stringProp>
+            <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:search&gt;
+&lt;querySpecification&gt;
+
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;And&lt;/operation&gt;
+
+    &lt;searchQuerySpecification /&gt;
+
+    &lt;left&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+        &lt;query&gt;VTKey:${vtkey} AND Tags:624615 AND DampenedTone:foobar&lt;/query&gt;
+        
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/left&gt;
+
+    &lt;right&gt;
+
+      &lt;operation&gt;None&lt;/operation&gt;
+
+      &lt;searchQuerySpecification&gt;
+
+      &lt;query&gt;&lt;/query&gt;
+
+      &lt;/searchQuerySpecification&gt;
+
+    &lt;/right&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;810&lt;/workspaceId&gt;
+
+&lt;/querySpecification&gt;
+
+&lt;searchResultSpecification&gt;
+
+  &lt;fields&gt;VTKey&lt;/fields&gt;
+  &lt;fields&gt;Tags&lt;/fields&gt;
+  &lt;fields&gt;DampenedTone&lt;/fields&gt;
+  &lt;gmtOffsetHour&gt;0&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;${resultCount}&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+
+  &lt;allowEstimation&gt;true&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;0&lt;/securityBitmask&gt;
+
+&lt;/searchResultSpecification&gt;
+
+      &lt;/end:search&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+            <stringProp name="SoapSampler.xml_data_file"></stringProp>
+            <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+            <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          </SoapSampler>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">resultCount</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;totalResults&gt;(.+?)&lt;/totalResults&gt;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">NULL</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49">1</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+              <stringProp name="Assertion.scope">variable</stringProp>
+              <stringProp name="Scope.variable">resultCount</stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell Assertion" enabled="false">
+              <stringProp name="BeanShellAssertion.query">if ( Integer.parseInt(vars.get(&quot;resultCount&quot;)) &lt; 1 ) {
+	Failure=true;
+	FailureMessage=&quot;Expected at least one tag with tagId &quot;+vars.get(&quot;tagId&quot;);
+}
+else {
+	Failure=false;
+}
+</stringProp>
+              <stringProp name="BeanShellAssertion.filename"></stringProp>
+              <stringProp name="BeanShellAssertion.parameters"></stringProp>
+              <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+            </BeanShellAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="false">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </LoopController>
+        <hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+            <stringProp name="IfController.condition">${__BeanShell(!&quot;${before}&quot;.equals(${after}))} </stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+          </IfController>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

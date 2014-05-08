@@ -1,0 +1,1329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.5" jmeter="2.10 r1533061">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1396979605000</longProp>
+        <longProp name="ThreadGroup.end_time">1396979605000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="url" elementType="Argument">
+              <stringProp name="Argument.name">url</stringProp>
+              <stringProp name="Argument.value">http://asapi02.preprod.viq:8084/ExportService/ExportService</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="count" elementType="Argument">
+              <stringProp name="Argument.name">count</stringProp>
+              <stringProp name="Argument.value">20000</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="site_list" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${url}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.exportservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:submit&gt;
+         &lt;!--Optional:--&gt;
+         &lt;query&gt;
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;None&lt;/operation&gt;
+
+    &lt;searchQuerySpecification&gt;
+
+      &lt;query&gt;ford &lt;/query&gt;
+
+      &lt;filters&gt;
+
+        &lt;key&gt;Language&lt;/key&gt;
+
+        &lt;values&gt;af&lt;/values&gt;
+
+        &lt;values&gt;sq&lt;/values&gt;
+
+        &lt;values&gt;ar&lt;/values&gt;
+
+        &lt;values&gt;bn&lt;/values&gt;
+
+        &lt;values&gt;bg&lt;/values&gt;
+
+        &lt;values&gt;ca&lt;/values&gt;
+
+        &lt;values&gt;zh-cn&lt;/values&gt;
+
+        &lt;values&gt;zh-tw&lt;/values&gt;
+
+        &lt;values&gt;hr&lt;/values&gt;
+
+        &lt;values&gt;cs&lt;/values&gt;
+
+        &lt;values&gt;da&lt;/values&gt;
+
+        &lt;values&gt;nl&lt;/values&gt;
+
+        &lt;values&gt;en&lt;/values&gt;
+
+        &lt;values&gt;fa&lt;/values&gt;
+
+        &lt;values&gt;tl&lt;/values&gt;
+
+        &lt;values&gt;fi&lt;/values&gt;
+
+        &lt;values&gt;fr&lt;/values&gt;
+
+        &lt;values&gt;ka&lt;/values&gt;
+
+        &lt;values&gt;de&lt;/values&gt;
+
+        &lt;values&gt;el&lt;/values&gt;
+
+        &lt;values&gt;gu&lt;/values&gt;
+
+        &lt;values&gt;he&lt;/values&gt;
+
+        &lt;values&gt;hi&lt;/values&gt;
+
+        &lt;values&gt;hu&lt;/values&gt;
+
+        &lt;values&gt;id&lt;/values&gt;
+
+        &lt;values&gt;it&lt;/values&gt;
+
+        &lt;values&gt;ja&lt;/values&gt;
+
+        &lt;values&gt;kn&lt;/values&gt;
+
+        &lt;values&gt;ko&lt;/values&gt;
+
+        &lt;values&gt;mk&lt;/values&gt;
+
+        &lt;values&gt;ml&lt;/values&gt;
+
+        &lt;values&gt;mr&lt;/values&gt;
+
+        &lt;values&gt;ne&lt;/values&gt;
+
+        &lt;values&gt;no&lt;/values&gt;
+
+        &lt;values&gt;pl&lt;/values&gt;
+
+        &lt;values&gt;pt&lt;/values&gt;
+
+        &lt;values&gt;pa&lt;/values&gt;
+
+        &lt;values&gt;ro&lt;/values&gt;
+
+        &lt;values&gt;ru&lt;/values&gt;
+
+        &lt;values&gt;sk&lt;/values&gt;
+
+        &lt;values&gt;sl&lt;/values&gt;
+
+        &lt;values&gt;so&lt;/values&gt;
+
+        &lt;values&gt;es&lt;/values&gt;
+
+        &lt;values&gt;sw&lt;/values&gt;
+
+        &lt;values&gt;sv&lt;/values&gt;
+
+        &lt;values&gt;ta&lt;/values&gt;
+
+        &lt;values&gt;te&lt;/values&gt;
+
+        &lt;values&gt;th&lt;/values&gt;
+
+        &lt;values&gt;tr&lt;/values&gt;
+
+        &lt;values&gt;uk&lt;/values&gt;
+
+        &lt;values&gt;xx&lt;/values&gt;
+
+        &lt;values&gt;ur&lt;/values&gt;
+
+        &lt;values&gt;vi&lt;/values&gt;
+
+        &lt;exclude&gt;false&lt;/exclude&gt;
+
+      &lt;/filters&gt;
+
+      &lt;filters&gt;
+
+        &lt;key&gt;MediaType&lt;/key&gt;
+
+        &lt;values&gt;Blog&lt;/values&gt;
+
+        &lt;values&gt;Forum&lt;/values&gt;
+
+        &lt;values&gt;Microblog&lt;/values&gt;
+
+        &lt;values&gt;Twitter&lt;/values&gt;
+
+        &lt;values&gt;Facebook&lt;/values&gt;
+
+        &lt;values&gt;Other&lt;/values&gt;
+
+        &lt;values&gt;Video/Photo&lt;/values&gt;
+
+        &lt;values&gt;News/MSM&lt;/values&gt;
+
+        &lt;values&gt;Bookmarking/Sharing&lt;/values&gt;
+
+        &lt;values&gt;Reviews/Shopping&lt;/values&gt;
+
+        &lt;values&gt;Social Networking&lt;/values&gt;
+
+        &lt;exclude&gt;false&lt;/exclude&gt;
+
+      &lt;/filters&gt;
+
+      &lt;dateRange&gt;
+
+        &lt;startDate&gt;1364716800000&lt;/startDate&gt;
+
+        &lt;endDate&gt;1396339199000&lt;/endDate&gt;
+
+      &lt;/dateRange&gt;
+
+    &lt;/searchQuerySpecification&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;35&lt;/workspaceId&gt;
+
+&lt;/query&gt;
+
+&lt;resultspecification xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+
+  &lt;facets&gt;
+
+    &lt;distinctColumns&gt;0&lt;/distinctColumns&gt;
+
+    &lt;estimateAbove&gt;-1&lt;/estimateAbove&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;SiteDomain&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;MediaType&lt;/name&gt;
+
+      &lt;aggregation&gt;StringFieldRollup&lt;/aggregation&gt;
+
+    &lt;/fields&gt;
+
+    &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+    &lt;minCount&gt;0&lt;/minCount&gt;
+
+    &lt;orderBy&gt;HitsDesc&lt;/orderBy&gt;
+
+    &lt;topCount&gt;${count}&lt;/topCount&gt;
+
+    &lt;totalDocuments&gt;0&lt;/totalDocuments&gt;
+
+  &lt;/facets&gt;
+
+  &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;20000&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+
+  &lt;allowEstimation&gt;true&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;0&lt;/securityBitmask&gt;
+
+&lt;/resultspecification&gt;
+&lt;/end:submit&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">id_site</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;return&gt;(.+?)&lt;/return&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">NULL</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="author_list" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${url}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.exportservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:submit&gt;
+         &lt;!--Optional:--&gt;
+         &lt;query&gt;
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;None&lt;/operation&gt;
+
+    &lt;searchQuerySpecification&gt;
+
+      &lt;query&gt;movie &lt;/query&gt;
+
+      &lt;filters&gt;
+
+        &lt;key&gt;Language&lt;/key&gt;
+
+        &lt;values&gt;af&lt;/values&gt;
+
+        &lt;values&gt;sq&lt;/values&gt;
+
+        &lt;values&gt;ar&lt;/values&gt;
+
+        &lt;values&gt;bn&lt;/values&gt;
+
+        &lt;values&gt;bg&lt;/values&gt;
+
+        &lt;values&gt;ca&lt;/values&gt;
+
+        &lt;values&gt;zh-cn&lt;/values&gt;
+
+        &lt;values&gt;zh-tw&lt;/values&gt;
+
+        &lt;values&gt;hr&lt;/values&gt;
+
+        &lt;values&gt;cs&lt;/values&gt;
+
+        &lt;values&gt;da&lt;/values&gt;
+
+        &lt;values&gt;nl&lt;/values&gt;
+
+        &lt;values&gt;en&lt;/values&gt;
+
+        &lt;values&gt;fa&lt;/values&gt;
+
+        &lt;values&gt;tl&lt;/values&gt;
+
+        &lt;values&gt;fi&lt;/values&gt;
+
+        &lt;values&gt;fr&lt;/values&gt;
+
+        &lt;values&gt;ka&lt;/values&gt;
+
+        &lt;values&gt;de&lt;/values&gt;
+
+        &lt;values&gt;el&lt;/values&gt;
+
+        &lt;values&gt;gu&lt;/values&gt;
+
+        &lt;values&gt;he&lt;/values&gt;
+
+        &lt;values&gt;hi&lt;/values&gt;
+
+        &lt;values&gt;hu&lt;/values&gt;
+
+        &lt;values&gt;id&lt;/values&gt;
+
+        &lt;values&gt;it&lt;/values&gt;
+
+        &lt;values&gt;ja&lt;/values&gt;
+
+        &lt;values&gt;kn&lt;/values&gt;
+
+        &lt;values&gt;ko&lt;/values&gt;
+
+        &lt;values&gt;mk&lt;/values&gt;
+
+        &lt;values&gt;ml&lt;/values&gt;
+
+        &lt;values&gt;mr&lt;/values&gt;
+
+        &lt;values&gt;ne&lt;/values&gt;
+
+        &lt;values&gt;no&lt;/values&gt;
+
+        &lt;values&gt;pl&lt;/values&gt;
+
+        &lt;values&gt;pt&lt;/values&gt;
+
+        &lt;values&gt;pa&lt;/values&gt;
+
+        &lt;values&gt;ro&lt;/values&gt;
+
+        &lt;values&gt;ru&lt;/values&gt;
+
+        &lt;values&gt;sk&lt;/values&gt;
+
+        &lt;values&gt;sl&lt;/values&gt;
+
+        &lt;values&gt;so&lt;/values&gt;
+
+        &lt;values&gt;es&lt;/values&gt;
+
+        &lt;values&gt;sw&lt;/values&gt;
+
+        &lt;values&gt;sv&lt;/values&gt;
+
+        &lt;values&gt;ta&lt;/values&gt;
+
+        &lt;values&gt;te&lt;/values&gt;
+
+        &lt;values&gt;th&lt;/values&gt;
+
+        &lt;values&gt;tr&lt;/values&gt;
+
+        &lt;values&gt;uk&lt;/values&gt;
+
+        &lt;values&gt;xx&lt;/values&gt;
+
+        &lt;values&gt;ur&lt;/values&gt;
+
+        &lt;values&gt;vi&lt;/values&gt;
+
+        &lt;exclude&gt;false&lt;/exclude&gt;
+
+      &lt;/filters&gt;
+
+      &lt;filters&gt;
+
+        &lt;key&gt;MediaType&lt;/key&gt;
+
+        &lt;values&gt;Blog&lt;/values&gt;
+
+        &lt;values&gt;Forum&lt;/values&gt;
+
+        &lt;values&gt;Microblog&lt;/values&gt;
+
+        &lt;values&gt;Twitter&lt;/values&gt;
+
+        &lt;values&gt;Facebook&lt;/values&gt;
+
+        &lt;values&gt;Other&lt;/values&gt;
+
+        &lt;values&gt;Video/Photo&lt;/values&gt;
+
+        &lt;values&gt;News/MSM&lt;/values&gt;
+
+        &lt;values&gt;Bookmarking/Sharing&lt;/values&gt;
+
+        &lt;values&gt;Reviews/Shopping&lt;/values&gt;
+
+        &lt;values&gt;Social Networking&lt;/values&gt;
+
+        &lt;exclude&gt;false&lt;/exclude&gt;
+
+      &lt;/filters&gt;
+
+      &lt;dateRange&gt;
+
+        &lt;startDate&gt;1364716800000&lt;/startDate&gt;
+
+        &lt;endDate&gt;1396339199000&lt;/endDate&gt;
+
+      &lt;/dateRange&gt;
+
+    &lt;/searchQuerySpecification&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;35&lt;/workspaceId&gt;
+
+&lt;/query&gt;
+
+&lt;resultspecification xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+
+  &lt;facets&gt;
+
+    &lt;distinctColumns&gt;0&lt;/distinctColumns&gt;
+
+    &lt;estimateAbove&gt;-1&lt;/estimateAbove&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;AuthorInfluence&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;Author&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;fields&gt;
+
+      &lt;name&gt;SiteDomain&lt;/name&gt;
+
+    &lt;/fields&gt;
+
+    &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+    &lt;minCount&gt;0&lt;/minCount&gt;
+
+    &lt;orderBy&gt;HitsDesc&lt;/orderBy&gt;
+
+    &lt;topCount&gt;${count}&lt;/topCount&gt;
+
+    &lt;totalDocuments&gt;0&lt;/totalDocuments&gt;
+
+  &lt;/facets&gt;
+
+  &lt;gmtOffsetHour&gt;-8&lt;/gmtOffsetHour&gt;
+
+  &lt;resultCount&gt;20000&lt;/resultCount&gt;
+
+  &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+
+  &lt;allowEstimation&gt;true&lt;/allowEstimation&gt;
+
+  &lt;securityBitmask&gt;0&lt;/securityBitmask&gt;
+
+&lt;/resultspecification&gt;
+&lt;/end:submit&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">id_author</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;return&gt;(.+?)&lt;/return&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">NULL</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="content_list" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${url}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.exportservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:submit&gt;
+         &lt;!--Optional:--&gt;
+         &lt;query&gt;
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;None&lt;/operation&gt;
+
+    &lt;searchQuerySpecification&gt;
+
+      &lt;query&gt;ford &lt;/query&gt;
+
+      &lt;filters&gt;
+
+        &lt;key&gt;Language&lt;/key&gt;
+
+        &lt;values&gt;af&lt;/values&gt;
+
+        &lt;values&gt;sq&lt;/values&gt;
+
+        &lt;values&gt;ar&lt;/values&gt;
+
+        &lt;values&gt;bn&lt;/values&gt;
+
+        &lt;values&gt;bg&lt;/values&gt;
+
+        &lt;values&gt;ca&lt;/values&gt;
+
+        &lt;values&gt;zh-cn&lt;/values&gt;
+
+        &lt;values&gt;zh-tw&lt;/values&gt;
+
+        &lt;values&gt;hr&lt;/values&gt;
+
+        &lt;values&gt;cs&lt;/values&gt;
+
+        &lt;values&gt;da&lt;/values&gt;
+
+        &lt;values&gt;nl&lt;/values&gt;
+
+        &lt;values&gt;en&lt;/values&gt;
+
+        &lt;values&gt;fa&lt;/values&gt;
+
+        &lt;values&gt;tl&lt;/values&gt;
+
+        &lt;values&gt;fi&lt;/values&gt;
+
+        &lt;values&gt;fr&lt;/values&gt;
+
+        &lt;values&gt;ka&lt;/values&gt;
+
+        &lt;values&gt;de&lt;/values&gt;
+
+        &lt;values&gt;el&lt;/values&gt;
+
+        &lt;values&gt;gu&lt;/values&gt;
+
+        &lt;values&gt;he&lt;/values&gt;
+
+        &lt;values&gt;hi&lt;/values&gt;
+
+        &lt;values&gt;hu&lt;/values&gt;
+
+        &lt;values&gt;id&lt;/values&gt;
+
+        &lt;values&gt;it&lt;/values&gt;
+
+        &lt;values&gt;ja&lt;/values&gt;
+
+        &lt;values&gt;kn&lt;/values&gt;
+
+        &lt;values&gt;ko&lt;/values&gt;
+
+        &lt;values&gt;mk&lt;/values&gt;
+
+        &lt;values&gt;ml&lt;/values&gt;
+
+        &lt;values&gt;mr&lt;/values&gt;
+
+        &lt;values&gt;ne&lt;/values&gt;
+
+        &lt;values&gt;no&lt;/values&gt;
+
+        &lt;values&gt;pl&lt;/values&gt;
+
+        &lt;values&gt;pt&lt;/values&gt;
+
+        &lt;values&gt;pa&lt;/values&gt;
+
+        &lt;values&gt;ro&lt;/values&gt;
+
+        &lt;values&gt;ru&lt;/values&gt;
+
+        &lt;values&gt;sk&lt;/values&gt;
+
+        &lt;values&gt;sl&lt;/values&gt;
+
+        &lt;values&gt;so&lt;/values&gt;
+
+        &lt;values&gt;es&lt;/values&gt;
+
+        &lt;values&gt;sw&lt;/values&gt;
+
+        &lt;values&gt;sv&lt;/values&gt;
+
+        &lt;values&gt;ta&lt;/values&gt;
+
+        &lt;values&gt;te&lt;/values&gt;
+
+        &lt;values&gt;th&lt;/values&gt;
+
+        &lt;values&gt;tr&lt;/values&gt;
+
+        &lt;values&gt;uk&lt;/values&gt;
+
+        &lt;values&gt;xx&lt;/values&gt;
+
+        &lt;values&gt;ur&lt;/values&gt;
+
+        &lt;values&gt;vi&lt;/values&gt;
+
+        &lt;exclude&gt;false&lt;/exclude&gt;
+
+      &lt;/filters&gt;
+
+      &lt;filters&gt;
+
+        &lt;key&gt;MediaType&lt;/key&gt;
+
+        &lt;values&gt;Blog&lt;/values&gt;
+
+        &lt;values&gt;Forum&lt;/values&gt;
+
+        &lt;values&gt;Microblog&lt;/values&gt;
+
+        &lt;values&gt;Twitter&lt;/values&gt;
+
+        &lt;values&gt;Facebook&lt;/values&gt;
+
+        &lt;values&gt;Other&lt;/values&gt;
+
+        &lt;values&gt;Video/Photo&lt;/values&gt;
+
+        &lt;values&gt;News/MSM&lt;/values&gt;
+
+        &lt;values&gt;Bookmarking/Sharing&lt;/values&gt;
+
+        &lt;values&gt;Reviews/Shopping&lt;/values&gt;
+
+        &lt;values&gt;Social Networking&lt;/values&gt;
+
+        &lt;exclude&gt;false&lt;/exclude&gt;
+
+      &lt;/filters&gt;
+
+      &lt;dateRange&gt;
+
+        &lt;startDate&gt;1364716800000&lt;/startDate&gt;
+
+        &lt;endDate&gt;1396339199000&lt;/endDate&gt;
+
+      &lt;/dateRange&gt;
+
+    &lt;/searchQuerySpecification&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;35&lt;/workspaceId&gt;
+
+&lt;/query&gt;
+
+&lt;resultspecification xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+ &lt;fields&gt;VTKey&lt;/fields&gt;
+ &lt;fields&gt;Title&lt;/fields&gt;
+ &lt;fields&gt;Body&lt;/fields&gt;
+ &lt;fields&gt;Author&lt;/fields&gt;
+ &lt;fields&gt;SiteDomain&lt;/fields&gt;
+ &lt;fields&gt;Permalink&lt;/fields&gt;
+ &lt;fields&gt;PublishedDT&lt;/fields&gt;
+ &lt;fields&gt;MediaType&lt;/fields&gt;
+ &lt;fields&gt;DampenedTone&lt;/fields&gt;
+ &lt;fields&gt;DampenedTone:original&lt;/fields&gt;
+ &lt;fields&gt;Language&lt;/fields&gt;
+ &lt;fields&gt;Tags&lt;/fields&gt;
+ &lt;fields&gt;FollowersCount&lt;/fields&gt;
+ &lt;fields&gt;FriendsCount&lt;/fields&gt;
+ &lt;fields&gt;AuthorInfluence&lt;/fields&gt;
+ &lt;fields&gt;ThreadClassification&lt;/fields&gt;
+ &lt;fields&gt;Location&lt;/fields&gt;
+ &lt;fields&gt;RankAlexaSiteTraffic&lt;/fields&gt;
+ &lt;fields&gt;ReachAlexaSiteTraffic&lt;/fields&gt;
+ &lt;fields&gt;VisitsAlexaSiteTraffic&lt;/fields&gt;
+ &lt;gmtOffsetHour&gt;-7&lt;/gmtOffsetHour&gt;
+ &lt;resultCount&gt;${count}&lt;/resultCount&gt;
+ &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+ &lt;sort&gt;
+ &lt;sortDirection&gt;DESC&lt;/sortDirection&gt;
+ &lt;fieldName&gt;NoSort&lt;/fieldName&gt;
+ &lt;/sort&gt;
+ &lt;allowEstimation&gt;false&lt;/allowEstimation&gt;
+ &lt;securityBitmask&gt;0&lt;/securityBitmask&gt;
+ &lt;/resultspecification&gt;
+&lt;/end:submit&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">id_content</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;return&gt;(.+?)&lt;/return&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">NULL</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="Check status" enabled="true">
+          <stringProp name="WhileController.condition">LAST</stringProp>
+        </WhileController>
+        <hashTree>
+          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+            <stringProp name="ConstantTimer.delay">10000</stringProp>
+          </ConstantTimer>
+          <hashTree/>
+          <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="status_site_list" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="SoapSampler.URL_DATA">${url}</stringProp>
+            <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.exportservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:getStatus&gt;
+         &lt;!--Zero or more repetitions:--&gt;
+         &lt;ids&gt;${id_site}&lt;/ids&gt;
+      &lt;/end:getStatus&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+            <stringProp name="SoapSampler.xml_data_file"></stringProp>
+            <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+            <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          </SoapSampler>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">status_site</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;status&gt;(.+?)&lt;/status&gt;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">NULL</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+          <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="status_author_list" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="SoapSampler.URL_DATA">${url}</stringProp>
+            <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.exportservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:getStatus&gt;
+         &lt;!--Zero or more repetitions:--&gt;
+         &lt;ids&gt;${id_author}&lt;/ids&gt;
+      &lt;/end:getStatus&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+            <stringProp name="SoapSampler.xml_data_file"></stringProp>
+            <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+            <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          </SoapSampler>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">status_author</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;status&gt;(.+?)&lt;/status&gt;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">NULL</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+          <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="status_content_list" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="SoapSampler.URL_DATA">${url}</stringProp>
+            <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.exportservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:getStatus&gt;
+         &lt;!--Zero or more repetitions:--&gt;
+         &lt;ids&gt;${id_content}&lt;/ids&gt;
+      &lt;/end:getStatus&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+            <stringProp name="SoapSampler.xml_data_file"></stringProp>
+            <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+            <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          </SoapSampler>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">status_content</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;status&gt;(.+?)&lt;/status&gt;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">NULL</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+          <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell Assertion - status" enabled="true">
+            <stringProp name="BeanShellAssertion.query">String s1 = vars.get(&quot;status_site&quot;);
+String s2 = vars.get(&quot;status_author&quot;);
+String s3 = vars.get(&quot;status_content&quot;);
+String s  = &quot;Success&quot;;
+
+if (s1.equals(s) &amp;&amp; s2.equals(s) &amp;&amp; s3.equals(s)) {
+	Failure = true;
+
+	FailureMessage = &quot;Data is ready to download!&quot;;
+}
+</stringProp>
+            <stringProp name="BeanShellAssertion.filename"></stringProp>
+            <stringProp name="BeanShellAssertion.parameters"></stringProp>
+            <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+          </BeanShellAssertion>
+          <hashTree/>
+        </hashTree>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+          <stringProp name="ConstantTimer.delay">30000</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="get_site_list_data" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${url}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.exportservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:getData&gt;
+         &lt;!--Optional:--&gt;
+         &lt;id&gt;${id_site}&lt;/id&gt;
+      &lt;/end:getData&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">results_site</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;results&gt;(.+?)&lt;/results&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">NULL</stringProp>
+            <stringProp name="RegexExtractor.match_number">-1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="47653682">20000</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+            <stringProp name="Assertion.scope">variable</stringProp>
+            <stringProp name="Scope.variable">results_site_matchNr</stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+          <stringProp name="ConstantTimer.delay">10000</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="get_author_list_data" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${url}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.exportservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:getData&gt;
+         &lt;!--Optional:--&gt;
+         &lt;id&gt;${id_author}&lt;/id&gt;
+      &lt;/end:getData&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">results_author</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;results&gt;(.+?)&lt;/results&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">NULL</stringProp>
+            <stringProp name="RegexExtractor.match_number">-1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="47653682">20000</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+            <stringProp name="Assertion.scope">variable</stringProp>
+            <stringProp name="Scope.variable">results_author_matchNr</stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+          <stringProp name="ConstantTimer.delay">30000</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="get_content_list_data" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${url}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.exportservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:getData&gt;
+         &lt;!--Optional:--&gt;
+         &lt;id&gt;${id_content}&lt;/id&gt;
+      &lt;/end:getData&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">results_content</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;results&gt;(.+?)&lt;/results&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">NULL</stringProp>
+            <stringProp name="RegexExtractor.match_number">-1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="47653682">20000</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+            <stringProp name="Assertion.scope">variable</stringProp>
+            <stringProp name="Scope.variable">results_content_matchNr</stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="get_content_from_search" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">http://tomcat01.qa.viq:8080/searchservice/SearchService</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:end=&quot;http://endpoints.searchservice.api.platform.visibletechnologies.com/&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;end:search&gt;
+&lt;querySpecification&gt;
+
+&lt;languageISO&gt;en&lt;/languageISO&gt;
+
+  &lt;query&gt;
+
+    &lt;operation&gt;None&lt;/operation&gt;
+
+    &lt;searchQuerySpecification&gt;
+
+      &lt;query&gt;verizon OR sprint &lt;/query&gt;
+
+      &lt;filters&gt;
+
+        &lt;key&gt;Language&lt;/key&gt;
+
+        &lt;values&gt;af&lt;/values&gt;
+
+        &lt;values&gt;sq&lt;/values&gt;
+
+        &lt;values&gt;ar&lt;/values&gt;
+
+        &lt;values&gt;bn&lt;/values&gt;
+
+        &lt;values&gt;bg&lt;/values&gt;
+
+        &lt;values&gt;ca&lt;/values&gt;
+
+        &lt;values&gt;zh-cn&lt;/values&gt;
+
+        &lt;values&gt;zh-tw&lt;/values&gt;
+
+        &lt;values&gt;hr&lt;/values&gt;
+
+        &lt;values&gt;cs&lt;/values&gt;
+
+        &lt;values&gt;da&lt;/values&gt;
+
+        &lt;values&gt;nl&lt;/values&gt;
+
+        &lt;values&gt;en&lt;/values&gt;
+
+        &lt;values&gt;fa&lt;/values&gt;
+
+        &lt;values&gt;tl&lt;/values&gt;
+
+        &lt;values&gt;fi&lt;/values&gt;
+
+        &lt;values&gt;fr&lt;/values&gt;
+
+        &lt;values&gt;ka&lt;/values&gt;
+
+        &lt;values&gt;de&lt;/values&gt;
+
+        &lt;values&gt;el&lt;/values&gt;
+
+        &lt;values&gt;gu&lt;/values&gt;
+
+        &lt;values&gt;he&lt;/values&gt;
+
+        &lt;values&gt;hi&lt;/values&gt;
+
+        &lt;values&gt;hu&lt;/values&gt;
+
+        &lt;values&gt;id&lt;/values&gt;
+
+        &lt;values&gt;it&lt;/values&gt;
+
+        &lt;values&gt;ja&lt;/values&gt;
+
+        &lt;values&gt;kn&lt;/values&gt;
+
+        &lt;values&gt;ko&lt;/values&gt;
+
+        &lt;values&gt;mk&lt;/values&gt;
+
+        &lt;values&gt;ml&lt;/values&gt;
+
+        &lt;values&gt;mr&lt;/values&gt;
+
+        &lt;values&gt;ne&lt;/values&gt;
+
+        &lt;values&gt;no&lt;/values&gt;
+
+        &lt;values&gt;pl&lt;/values&gt;
+
+        &lt;values&gt;pt&lt;/values&gt;
+
+        &lt;values&gt;pa&lt;/values&gt;
+
+        &lt;values&gt;ro&lt;/values&gt;
+
+        &lt;values&gt;ru&lt;/values&gt;
+
+        &lt;values&gt;sk&lt;/values&gt;
+
+        &lt;values&gt;sl&lt;/values&gt;
+
+        &lt;values&gt;so&lt;/values&gt;
+
+        &lt;values&gt;es&lt;/values&gt;
+
+        &lt;values&gt;sw&lt;/values&gt;
+
+        &lt;values&gt;sv&lt;/values&gt;
+
+        &lt;values&gt;ta&lt;/values&gt;
+
+        &lt;values&gt;te&lt;/values&gt;
+
+        &lt;values&gt;th&lt;/values&gt;
+
+        &lt;values&gt;tr&lt;/values&gt;
+
+        &lt;values&gt;uk&lt;/values&gt;
+
+        &lt;values&gt;xx&lt;/values&gt;
+
+        &lt;values&gt;ur&lt;/values&gt;
+
+        &lt;values&gt;vi&lt;/values&gt;
+
+        &lt;exclude&gt;false&lt;/exclude&gt;
+
+      &lt;/filters&gt;
+
+      &lt;filters&gt;
+
+        &lt;key&gt;MediaType&lt;/key&gt;
+
+        &lt;values&gt;Blog&lt;/values&gt;
+
+        &lt;values&gt;Forum&lt;/values&gt;
+
+        &lt;values&gt;Microblog&lt;/values&gt;
+
+        &lt;values&gt;Twitter&lt;/values&gt;
+
+        &lt;values&gt;Facebook&lt;/values&gt;
+
+        &lt;values&gt;Other&lt;/values&gt;
+
+        &lt;values&gt;Video/Photo&lt;/values&gt;
+
+        &lt;values&gt;News/MSM&lt;/values&gt;
+
+        &lt;values&gt;Bookmarking/Sharing&lt;/values&gt;
+
+        &lt;values&gt;Reviews/Shopping&lt;/values&gt;
+
+        &lt;values&gt;Social Networking&lt;/values&gt;
+
+        &lt;exclude&gt;false&lt;/exclude&gt;
+
+      &lt;/filters&gt;
+
+      &lt;dateRange&gt;
+
+        &lt;startDate&gt;1364716800000&lt;/startDate&gt;
+
+        &lt;endDate&gt;1396339199000&lt;/endDate&gt;
+
+      &lt;/dateRange&gt;
+
+    &lt;/searchQuerySpecification&gt;
+
+  &lt;/query&gt;
+
+  &lt;workspaceId&gt;35&lt;/workspaceId&gt;
+
+&lt;/querySpecification&gt;
+
+&lt;searchResultSpecification xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+ &lt;fields&gt;VTKey&lt;/fields&gt;
+ &lt;fields&gt;Title&lt;/fields&gt;
+ &lt;fields&gt;Author&lt;/fields&gt;
+ &lt;fields&gt;Body&lt;/fields&gt;
+ &lt;fields&gt;SiteDomain&lt;/fields&gt;
+ &lt;fields&gt;Permalink&lt;/fields&gt;
+ &lt;fields&gt;PublishedDT&lt;/fields&gt;
+ &lt;fields&gt;MediaType&lt;/fields&gt;
+ &lt;fields&gt;DampenedTone&lt;/fields&gt;
+ &lt;fields&gt;DampenedTone:original&lt;/fields&gt;
+ &lt;fields&gt;Language&lt;/fields&gt;
+ &lt;fields&gt;Tags&lt;/fields&gt;
+ &lt;fields&gt;FollowersCount&lt;/fields&gt;
+ &lt;fields&gt;FriendsCount&lt;/fields&gt;
+ &lt;fields&gt;AuthorInfluence&lt;/fields&gt;
+ &lt;fields&gt;ThreadClassification&lt;/fields&gt;
+ &lt;fields&gt;Location&lt;/fields&gt;
+ &lt;fields&gt;RankAlexaSiteTraffic&lt;/fields&gt;
+ &lt;fields&gt;ReachAlexaSiteTraffic&lt;/fields&gt;
+ &lt;fields&gt;VisitsAlexaSiteTraffic&lt;/fields&gt;
+ &lt;gmtOffsetHour&gt;-7&lt;/gmtOffsetHour&gt;
+ &lt;resultCount&gt;${count}&lt;/resultCount&gt;
+ &lt;resultOffset&gt;0&lt;/resultOffset&gt;
+ &lt;sort&gt;
+ &lt;sortDirection&gt;DESC&lt;/sortDirection&gt;
+ &lt;fieldName&gt;NoSort&lt;/fieldName&gt;
+ &lt;/sort&gt;
+ &lt;allowEstimation&gt;false&lt;/allowEstimation&gt;
+ &lt;securityBitmask&gt;0&lt;/securityBitmask&gt;
+ &lt;/searchResultSpecification&gt;
+ &lt;/end:search&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">results_content</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;results&gt;(.+?)&lt;/results&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">NULL</stringProp>
+            <stringProp name="RegexExtractor.match_number">-1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="47653682">20000</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+            <stringProp name="Assertion.scope">variable</stringProp>
+            <stringProp name="Scope.variable">results_content_matchNr</stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
